@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -10,15 +10,21 @@ import Footer from './components/Footer'
 import InfoPage from './components/InfoPage'
 import DarkVeil from './components/Backgrounds/DarkVeil/DarkVeil'
 
-const LandingPage = () => (
-  <>
-    <Hero />
-    <Benefits />
-    <HypeSection />
-    <WaitlistSignup />
-    <FounderSection />
-  </>
-);
+const LandingPage = () => {
+  useEffect(() => {
+    console.log('🏁 LANDING PAGE MOUNTED');
+  }, []);
+  
+  return (
+    <>
+      <Hero />
+      <Benefits />
+      <HypeSection />
+      <WaitlistSignup />
+      <FounderSection />
+    </>
+  );
+};
 
 function App() {
   return (
@@ -30,6 +36,7 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
   
   useEffect(() => {
     console.log('🛣️ ROUTE CHANGED:', location.pathname);
@@ -37,15 +44,26 @@ function AppContent() {
   }, [location]);
 
   return (
-    <div className="app-landing" style={{ position: 'relative' }}>
-      {/* Global Background Element */}
+    <div className="app-landing" style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Navbar />
+      
+      <main style={{ flex: 1, position: 'relative', zIndex: 5 }}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/info/:slug" element={<InfoPage />} />
+        </Routes>
+      </main>
+
+      <Footer />
+
+      {/* Global Background Element - Moved to end of DOM for safety */}
       <div style={{
           position: 'fixed',
           top: 0,
           left: 0,
           width: '100vw',
           height: '100vh',
-          zIndex: -1,
+          zIndex: 0,
           pointerEvents: 'none',
           overflow: 'hidden'
       }}>
@@ -59,15 +77,6 @@ function AppContent() {
           resolutionScale={1}
         />
       </div>
-
-      <Navbar />
-      
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/info/:slug" element={<InfoPage />} />
-      </Routes>
-
-      <Footer />
     </div>
   );
 }

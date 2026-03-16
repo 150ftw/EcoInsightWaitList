@@ -20,11 +20,14 @@ const Navbar = () => {
 
   return (
     <nav className="navbar animate-fade-in" style={{ 
-      padding: 'clamp(1.5rem, 4vw, 3rem) 0', 
-      position: 'absolute', 
+      padding: '1.5rem 0', 
+      position: 'fixed', 
       top: 0, 
       width: '100%', 
-      zIndex: 10 
+      zIndex: 9999,
+      background: 'rgba(0,0,0,0.5)',
+      backdropFilter: 'blur(10px)',
+      borderBottom: '1px solid rgba(255,255,255,0.05)'
     }}>
       <div className="container" style={{ 
         display: 'flex', 
