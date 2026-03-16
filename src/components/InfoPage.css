@@ -14,20 +14,25 @@
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   color: var(--accent-primary);
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  z-index: 100 !important; /* Ensure clickable */
+  z-index: 100 !important;
   cursor: pointer;
 }
 
+.back-arrow {
+  font-size: 1.5rem;
+  line-height: 0;
+}
+
 .back-link:hover {
-  transform: translateX(-5px);
+  transform: translateX(-8px);
   color: var(--accent-secondary);
 }
 
