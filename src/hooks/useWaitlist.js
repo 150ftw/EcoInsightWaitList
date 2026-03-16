@@ -96,6 +96,7 @@ export const useWaitlist = () => {
 
       const newReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
       
+      console.log('Attempting Supabase insert for:', { email: emailAddr, referred_by: finalReferralCode });
       const { data, error } = await supabase
         .from('waitlist')
         .insert([
