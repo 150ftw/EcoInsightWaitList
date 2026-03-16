@@ -81,13 +81,24 @@
 }
 
 @media (max-width: 968px) {
+  .footer .container {
+    text-align: left !important;
+  }
+
   .footer-content {
     flex-direction: column;
-    gap: 3rem;
+    align-items: flex-start;
+    gap: 3.5rem;
   }
   
+  .footer-brand {
+    align-items: flex-start;
+  }
+
   .footer-links-grid {
+    width: 100%;
     gap: 3rem;
+    text-align: left;
   }
 }
 
