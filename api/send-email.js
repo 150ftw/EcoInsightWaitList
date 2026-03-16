@@ -62,7 +62,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'EcoInsight <onboarding@resend.dev>',
+        from: 'EcoInsight <onboarding@joinecoinsight.dev>',
         to: [email],
         subject: '🚀 Welcome to the EcoInsight Waitlist!',
         html: html,
