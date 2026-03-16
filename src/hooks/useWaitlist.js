@@ -108,14 +108,19 @@ export const useWaitlist = () => {
         // --- 📧 MODIFIED: Send Welcome Email via Vercel Serverless Function ---
         try {
           console.log('Invoking welcome email (Vercel API) for:', emailAddr);
-          await fetch('/api/send-email', {
+          const response = await fetch('/api/send-email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: emailAddr })
           });
-          console.log('Vercel API request sent.');
+          const result = await response.json();
+          if (!response.ok) {
+            console.error('Welcome email API failed:', result.error || 'Unknown error', result.details || '');
+          } else {
+            console.log('Welcome email sent successfully:', result);
+          }
         } catch (emailErr) {
-          console.error('Welcome email Vercel API failed:', emailErr);
+          console.error('Welcome email Vercel API failed to invoke:', emailErr);
         }
         // -------------------------------------------------------------
 

@@ -53,6 +53,8 @@ export default async function handler(req, res) {
       </div>
     `;
 
+    console.log(`Attempting to send email to ${email} using Resend API Key: ${RESEND_API_KEY ? 'Present' : 'Missing'}`);
+
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -60,7 +62,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'EcoInsight <onboarding@resend.dev>', // Update this after user verifies domain
+        from: 'EcoInsight <onboarding@resend.dev>',
         to: [email],
         subject: '🚀 Welcome to the EcoInsight Waitlist!',
         html: html,
@@ -71,14 +73,20 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+    console.log('Resend API Response Status:', response.status);
+    console.log('Resend API Response Body:', JSON.stringify(data));
 
     if (!response.ok) {
-      throw new Error(data.message || 'Failed to send email');
+      // Return the specific Resend error to the client for debugging
+      return res.status(response.status).json({ 
+        error: data.message || 'Resend API failed', 
+        details: data 
+      });
     }
 
     return res.status(200).json(data);
   } catch (error) {
-    console.error('Vercel API Error:', error);
-    return res.status(500).json({ error: error.message });
+    console.error('Vercel API Handler Error:', error);
+    return res.status(500).json({ error: 'Internal Server Error', message: error.message });
   }
 }
