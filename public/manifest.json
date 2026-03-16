@@ -1,0 +1,15 @@
+{
+  "short_name": "EcoInsight",
+  "name": "EcoInsight – AI Financial Insights",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#8b5cf6",
+  "background_color": "#030303"
+}
