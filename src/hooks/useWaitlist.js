@@ -43,9 +43,10 @@ export const useWaitlist = () => {
         .single();
 
       if (userError) {
-        console.error('Supabase fetch error for user:', userError);
         if (userError.code === 'PGRST116') {
-          console.log('User not found on waitlist.');
+          console.log('ℹ️ User not on waitlist yet (Ready to join).');
+        } else {
+          console.error('❌ Supabase fetch error:', userError);
         }
         setIsSubscribed(false);
         return;
@@ -82,9 +83,17 @@ export const useWaitlist = () => {
   };
 
   const signup = async () => {
-    if (!clerkUser) return;
+    console.log('🖱️ CLAMP MY SPOT CLICKED');
+    if (!clerkUser) {
+      console.log('❌ Signup failed: No Clerk user found');
+      return;
+    }
     const emailAddr = clerkUser.primaryEmailAddress?.emailAddress;
-    if (!emailAddr) return;
+    console.log('📧 Email detected:', emailAddr);
+    if (!emailAddr) {
+      console.log('❌ Signup failed: No email address found');
+      return;
+    }
 
     setLoading(true);
     try {
