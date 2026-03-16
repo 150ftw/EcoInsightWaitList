@@ -34,9 +34,9 @@ const InfoPage = () => {
           <h1 className="accent-gradient-text">{page.title}</h1>
         </header>
 
-        {slug === 'about-us' && <LeadershipCard />}
-        
         <article className="info-content" dangerouslySetInnerHTML={{ __html: page.content }} />
+
+        {slug === 'about-us' && <LeadershipCard />}
         
         <footer className="info-footer">
           <Link to="/" className="btn-secondary">Join the Waitlist</Link>
