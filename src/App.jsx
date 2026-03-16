@@ -2,9 +2,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import ProblemStatement from './components/ProblemStatement'
 import Benefits from './components/Benefits'
+import InteractiveDemo from './components/InteractiveDemo'
 import AIInsights from './components/AIInsights'
 import TrustSection from './components/TrustSection'
+import VisionSection from './components/VisionSection'
 import HypeSection from './components/HypeSection'
 import WaitlistSignup from './components/WaitlistSignup'
 import FounderSection from './components/FounderSection'
@@ -21,9 +24,12 @@ const LandingPage = () => {
   return (
     <>
       <Hero />
+      <ProblemStatement />
       <Benefits />
+      <InteractiveDemo />
       <AIInsights />
       <TrustSection />
+      <VisionSection />
       <HypeSection />
       <WaitlistSignup />
       <FounderSection />

@@ -30,9 +30,10 @@ const WaitlistSignup = () => {
         <div className="glass-card animate-fade-in" style={{ padding: 'clamp(2rem, 8vw, 4rem)', textAlign: 'center' }}>
           {!clerkUser ? (
             <>
-              <h2 style={{ marginBottom: '1.5rem', lineHeight: 1.1 }}>Join the Dalal Street Elite</h2>
+              <div className="exclusive-badge" style={{ display: 'inline-block', padding: '0.5rem 1rem', background: 'rgba(139, 92, 246, 0.1)', border: '1px solid var(--accent-primary)', borderRadius: '100px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--accent-primary)', marginBottom: '2rem' }}>Priority Enrollment Open</div>
+              <h2 style={{ marginBottom: '1.5rem', lineHeight: 1.1 }}>Request Exclusive Entry</h2>
               <p style={{ color: 'rgba(255, 255, 255, 0.6)', marginBottom: 'clamp(2rem, 6vw, 3.5rem)', fontSize: 'clamp(1rem, 3vw, 1.25rem)', maxWidth: '500px', margin: '0 auto clamp(2.5rem, 6vw, 3.5rem)', lineHeight: 1.6 }}>
-                EcoInsight requires a verified identity to maintain the quality of our alpha signals. Sign in to claim your spot.
+                EcoInsight enrollment is strictly restricted to verified foundational slots. Access is currently <strong>request-only</strong>.
               </p>
               <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <SignInButton mode="modal">
@@ -49,9 +50,9 @@ const WaitlistSignup = () => {
                 <UserButton />
                 <span style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)' }}>{clerkUser.primaryEmailAddress?.emailAddress}</span>
               </div>
-              <h2 style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', marginBottom: '1.5rem', lineHeight: 1.1 }}>Ready to Claim Your Rank?</h2>
+              <h2 style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', marginBottom: '1.5rem', lineHeight: 1.1 }}>Secure Your Foundational Slot</h2>
               <p style={{ color: 'var(--text-secondary)', marginBottom: 'clamp(2.5rem, 6vw, 3.5rem)', fontSize: 'clamp(1rem, 2.5vw, 1.2rem)' }}>
-                You're signed in. Click below to officially join the waitlist and secure your Bharat edge.
+                Identity verified. Click below to officially request your priority slot in the EcoInsight institutional network.
               </p>
               <button 
                 onClick={signup}
@@ -59,7 +60,7 @@ const WaitlistSignup = () => {
                 disabled={loading}
                 style={{ width: '100%', padding: '1.5rem', fontSize: 'clamp(1.1rem, 4vw, 1.4rem)' }}
               >
-                {loading ? 'Securing Spot...' : 'Claim My Waitlist Spot →'}
+                {loading ? 'Requesting Access...' : 'Request Priority Entry →'}
               </button>
             </>
           ) : (
@@ -68,9 +69,9 @@ const WaitlistSignup = () => {
                 <UserButton />
               </div>
               <div style={{ fontSize: 'clamp(3rem, 10vw, 5rem)', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 20px var(--accent-primary))' }}>🛡️</div>
-              <h2 style={{ marginBottom: '1rem', lineHeight: 1.1 }}>Access Secured</h2>
+              <h2 style={{ marginBottom: '1rem', lineHeight: 1.1 }}>Entry Slot Secured</h2>
               <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: 'clamp(1.1rem, 3vw, 1.3rem)' }}>
-                Welcome to the future of Indian fintech. Your rank in Bharat is:
+                Welcome to the institutional network. Your foundational entry number is:
               </p>
               
               <div className="accent-gradient-text" style={{ fontSize: 'clamp(4rem, 15vw, 7rem)', fontWeight: 900, marginBottom: '2rem', lineHeight: 1 }}>
@@ -78,8 +79,8 @@ const WaitlistSignup = () => {
               </div>
               
               <div style={{ margin: 'clamp(2rem, 6vw, 3.1rem) 0', padding: 'clamp(1.5rem, 5vw, 2.5rem)', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '24px', border: '1px dashed var(--glass-border)', position: 'relative' }}>
-                <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', marginBottom: '1rem', fontWeight: 800, color: 'white' }}>Boost your rank</p>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>For every referral, you jump ahead of the queue.</p>
+                <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', marginBottom: '1rem', fontWeight: 800, color: 'white' }}>Unlock Priority Access</p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Refer 3 colleagues to jump to the <strong>Founders Circle</strong> for instant portal access.</p>
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <input 
                     readOnly 
@@ -96,7 +97,7 @@ const WaitlistSignup = () => {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1.5rem' }}>
                 <div className="glass-card" style={{ padding: '1.5rem' }}>
                   <div className="accent-gradient-text" style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', fontWeight: 800 }}>{waitlistData?.referral_count || 0}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700, marginTop: '0.5rem' }}>Referrals</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700, marginTop: '0.5rem' }}>Network Boost</div>
                 </div>
                 <div className="glass-card" style={{ padding: '1.5rem' }}>
                   <div className="accent-gradient-text" style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', fontWeight: 800 }}>#{waitlistData?.position}</div>
