@@ -1,0 +1,148 @@
+.leadership-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.leadership-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.leadership-title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.leadership-subtitle {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.1rem;
+}
+
+.leadership-card {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  min-height: 450px;
+  background: #000000;
+  border-radius: 40px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  /* Purple border */
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  box-shadow: 0 0 40px rgba(138, 43, 226, 0.1);
+}
+
+.card-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.founder-avatar-wrapper {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.founder-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1a1a1a;
+}
+
+.founder-name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.founder-role {
+  font-family: 'Inter', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 3rem;
+}
+
+.corporate-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+.corporate-badge:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.badge-icon {
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.badge-text {
+  font-family: 'Inter', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 640px) {
+  .leadership-card {
+    border-radius: 30px;
+    padding: 2rem 1rem;
+    min-height: 400px;
+  }
+  
+  .founder-avatar-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .corporate-badge {
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .badge-text {
+    font-size: 0.7rem;
+  }
+}

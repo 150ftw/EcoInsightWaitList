@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { footerContent } from '../data/footerContent';
+import LeadershipCard from './LeadershipCard';
 import './InfoPage.css';
 
 const InfoPage = () => {
@@ -32,6 +33,8 @@ const InfoPage = () => {
           </Link>
           <h1 className="accent-gradient-text">{page.title}</h1>
         </header>
+
+        {slug === 'about-us' && <LeadershipCard />}
         
         <article className="info-content" dangerouslySetInnerHTML={{ __html: page.content }} />
         
