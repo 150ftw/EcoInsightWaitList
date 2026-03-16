@@ -52,22 +52,44 @@ const benefits = [
 
 const Benefits = () => {
   return (
-    <section style={{ padding: '120px 0' }}>
+    <section style={{ padding: 'clamp(4rem, 10vh, 7.5rem) 0' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-          <h2 style={{ fontSize: '3.5rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>Invest with a Bharat Edge</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto', opacity: 0.9 }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 8vw, 6rem)' }}>
+          <h2 style={{ marginBottom: '1.5rem', lineHeight: 1.1 }}>Invest with a Bharat Edge</h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(1rem, 3vw, 1.2rem)', maxWidth: '700px', margin: '0 auto', opacity: 0.9 }}>
             Generic tools ignore the nuances of the Indian market. EcoInsight is built for the Indian investor, providing clarity in the world's fastest-growing economy.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem' }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(clamp(250px, 100%, 300px), 1fr))', 
+          gap: 'clamp(1.5rem, 4vw, 2.5rem)' 
+        }}>
           {benefits.map((benefit, index) => (
-            <div key={index} className="glass-card animate-fade-in" style={{ padding: '3rem', animationDelay: `${0.1 * index}s`, display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '80px', height: '80px', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(139, 92, 246, 0.05)', borderRadius: '20px', border: '1px solid rgba(139, 92, 246, 0.1)' }}>
+            <div key={index} className="glass-card animate-fade-in" style={{ 
+              padding: 'clamp(2rem, 5vw, 3.5rem)', 
+              animationDelay: `${0.1 * index}s`, 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '1rem', 
+              alignItems: 'center', 
+              textAlign: 'center' 
+            }}>
+              <div style={{ 
+                width: 'clamp(60px, 12vw, 80px)', 
+                height: 'clamp(60px, 12vw, 80px)', 
+                marginBottom: '1rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                background: 'rgba(139, 92, 246, 0.05)', 
+                borderRadius: '20px', 
+                border: '1px solid rgba(139, 92, 246, 0.1)' 
+              }}>
                 {benefit.icon}
               </div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>{benefit.title}</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.6 }}>{benefit.description}</p>
+              <h3 style={{ fontSize: 'clamp(1.25rem, 4vw, 1.6rem)', marginBottom: '0.5rem', color: 'white' }}>{benefit.title}</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.95rem, 3vw, 1.1rem)', lineHeight: 1.6 }}>{benefit.description}</p>
             </div>
           ))}
         </div>
