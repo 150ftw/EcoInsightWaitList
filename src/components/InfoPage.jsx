@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { footerContent } from '../data/footerContent';
 import LeadershipCard from './LeadershipCard';
