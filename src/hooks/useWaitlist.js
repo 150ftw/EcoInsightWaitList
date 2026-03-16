@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useUser } from '@clerk/react';
+import { welcomeTemplate } from '../lib/templates/welcome-template';
 
 export const useWaitlist = () => {
   const { user: clerkUser, isLoaded } = useUser();
@@ -103,6 +104,34 @@ export const useWaitlist = () => {
         }
       } else {
         console.log('Signup successful!');
+        
+        // --- 📧 NEW: Send Welcome Email ---
+        try {
+          const resendKey = import.meta.env.VITE_RESEND_API_KEY;
+          if (resendKey) {
+            console.log('Sending welcome email to:', emailAddr);
+            await fetch('https://api.resend.com/emails', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${resendKey}`
+              },
+              body: JSON.stringify({
+                from: 'EcoInsight <onboarding@resend.dev>',
+                to: [emailAddr],
+                subject: '🚀 Welcome to the EcoInsight Waitlist!',
+                html: welcomeTemplate(emailAddr),
+                tags: [
+                  { name: 'category', value: 'welcome-template' }
+                ]
+              })
+            });
+          }
+        } catch (emailErr) {
+          console.error('Welcome email failed:', emailErr);
+        }
+        // ---------------------------------
+
         if (finalReferralCode) {
           console.log('Boosting referrer:', finalReferralCode);
           const { error: rpcError } = await supabase.rpc('increment_referral_count', { ref_code: finalReferralCode });
