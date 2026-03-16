@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { footerContent } from '../data/footerContent';
 import LeadershipCard from './LeadershipCard';
 import './InfoPage.css';
 
 const InfoPage = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const page = footerContent[slug];
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
+
+  const handleBackHome = (e) => {
+    e.preventDefault();
+    console.log('🔙 Navigating to HOME via handleBackHome');
+    navigate('/');
+  };
 
   if (!page) {
     return (
@@ -18,7 +24,7 @@ const InfoPage = () => {
         <div className="container">
           <h1 className="accent-gradient-text">404 - Page Not Found</h1>
           <p>We couldn't find the information you're looking for.</p>
-          <Link to="/" className="btn-primary">Back to Home</Link>
+          <button onClick={handleBackHome} className="btn-primary">Back to Home</button>
         </div>
       </div>
     );
@@ -28,9 +34,9 @@ const InfoPage = () => {
     <div className="info-page animate-fade-in">
       <div className="container">
         <header className="info-header">
-          <Link to="/" className="back-link">
+          <button onClick={handleBackHome} className="back-link" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>
             <span className="back-arrow">←</span> Back to Home
-          </Link>
+          </button>
           <h1 className="accent-gradient-text">{page.title}</h1>
         </header>
 
@@ -39,7 +45,7 @@ const InfoPage = () => {
         {slug === 'about-us' && <LeadershipCard />}
         
         <footer className="info-footer">
-          <Link to="/" className="btn-secondary">Join the Waitlist</Link>
+          <button onClick={handleBackHome} className="btn-secondary">Join the Waitlist</button>
         </footer>
       </div>
     </div>
