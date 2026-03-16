@@ -105,17 +105,17 @@ export const useWaitlist = () => {
       } else {
         console.log('Signup successful!');
         
-        // --- 📧 MODIFIED: Send Welcome Email via Supabase Edge Function ---
+        // --- 📧 MODIFIED: Send Welcome Email via Vercel Serverless Function ---
         try {
-          console.log('Invoking welcome email function for:', emailAddr);
-          const { data, error: funcError } = await supabase.functions.invoke('send-welcome-email', {
-            body: { email: emailAddr }
+          console.log('Invoking welcome email (Vercel API) for:', emailAddr);
+          await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailAddr })
           });
-          
-          if (funcError) throw funcError;
-          console.log('Edge Function response:', data);
+          console.log('Vercel API request sent.');
         } catch (emailErr) {
-          console.error('Welcome email Edge Function failed:', emailErr);
+          console.error('Welcome email Vercel API failed:', emailErr);
         }
         // -------------------------------------------------------------
 

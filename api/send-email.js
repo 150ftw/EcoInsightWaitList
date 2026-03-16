@@ -1,28 +1,29 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+export default async function handler(req, res) {
+  // Add CORS headers for local development if needed
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
-
-serve(async (req) => {
-  // Handle CORS preflight
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  const { email } = req.body;
+  const RESEND_API_KEY = process.env.VITE_RESEND_API_KEY;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  if (!RESEND_API_KEY) {
+    return res.status(500).json({ error: 'VITE_RESEND_API_KEY is not configured' });
   }
 
   try {
-    const { email } = await req.json()
-
-    if (!email) {
-      return new Response(
-        JSON.stringify({ error: 'Email is required' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      )
-    }
-
     const html = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; background-color: #050505; color: #ffffff; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
         <div style="margin-bottom: 32px; text-align: center;">
@@ -50,16 +51,16 @@ serve(async (req) => {
           Sent to ${email} • EcoInsight Bharat Edition
         </div>
       </div>
-    `
+    `;
 
-    const res = await fetch('https://api.resend.com/emails', {
+    const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'EcoInsight <onboarding@resend.dev>', // Update this after verifying domain
+        from: 'EcoInsight <onboarding@resend.dev>', // Update this after user verifies domain
         to: [email],
         subject: '🚀 Welcome to the EcoInsight Waitlist!',
         html: html,
@@ -67,18 +68,17 @@ serve(async (req) => {
           { name: 'category', value: 'welcome-template' }
         ]
       }),
-    })
+    });
 
-    const data = await res.json()
+    const data = await response.json();
 
-    return new Response(
-      JSON.stringify(data),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    )
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to send email');
+    }
+
+    return res.status(200).json(data);
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    )
+    console.error('Vercel API Error:', error);
+    return res.status(500).json({ error: error.message });
   }
-})
+}
