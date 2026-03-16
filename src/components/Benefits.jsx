@@ -34,7 +34,7 @@ const benefits = [
     icon: <Icons.Market />
   },
   {
-    title: 'Real-time On-chain/Off-chain',
+    title: 'Real-Time On/Off-Chain Analytics',
     description: 'Live tracking of FII & DII data, bulk deals, and corporate actions that move the Indian indices.',
     icon: <Icons.Realtime />
   },
