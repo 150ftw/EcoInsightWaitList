@@ -40,14 +40,10 @@ export const useWaitlist = () => {
         .from('waitlist')
         .select('*')
         .eq('email', userEmail)
-        .single();
+        .maybeSingle();
 
       if (userError) {
-        if (userError.code === 'PGRST116') {
-          console.log('ℹ️ User not on waitlist yet (Ready to join).');
-        } else {
-          console.error('❌ Supabase fetch error:', userError);
-        }
+        console.error('❌ Supabase fetch error:', userError);
         setIsSubscribed(false);
         return;
       }
