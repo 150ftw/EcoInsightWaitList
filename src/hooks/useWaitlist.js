@@ -105,32 +105,19 @@ export const useWaitlist = () => {
       } else {
         console.log('Signup successful!');
         
-        // --- 📧 NEW: Send Welcome Email ---
+        // --- 📧 MODIFIED: Send Welcome Email via Supabase Edge Function ---
         try {
-          const resendKey = import.meta.env.VITE_RESEND_API_KEY;
-          if (resendKey) {
-            console.log('Sending welcome email to:', emailAddr);
-            await fetch('https://api.resend.com/emails', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${resendKey}`
-              },
-              body: JSON.stringify({
-                from: 'EcoInsight <onboarding@resend.dev>',
-                to: [emailAddr],
-                subject: '🚀 Welcome to the EcoInsight Waitlist!',
-                html: welcomeTemplate(emailAddr),
-                tags: [
-                  { name: 'category', value: 'welcome-template' }
-                ]
-              })
-            });
-          }
+          console.log('Invoking welcome email function for:', emailAddr);
+          const { data, error: funcError } = await supabase.functions.invoke('send-welcome-email', {
+            body: { email: emailAddr }
+          });
+          
+          if (funcError) throw funcError;
+          console.log('Edge Function response:', data);
         } catch (emailErr) {
-          console.error('Welcome email failed:', emailErr);
+          console.error('Welcome email Edge Function failed:', emailErr);
         }
-        // ---------------------------------
+        // -------------------------------------------------------------
 
         if (finalReferralCode) {
           console.log('Boosting referrer:', finalReferralCode);
