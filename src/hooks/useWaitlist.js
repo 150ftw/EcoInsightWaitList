@@ -57,7 +57,7 @@ export const useWaitlist = () => {
       const { count, error: countError } = await supabase
         .from('waitlist')
         .select('*', { count: 'exact', head: true })
-        .or(`referral_count.gt.${user.referral_count},and(referral_count.eq.${user.referral_count},created_at.lt.${user.created_at})`);
+        .lt('created_at', user.created_at);
 
       if (countError) {
         console.error('Supabase count error:', countError);

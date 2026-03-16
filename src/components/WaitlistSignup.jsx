@@ -100,7 +100,7 @@ const WaitlistSignup = () => {
                 </div>
                 <div className="glass-card" style={{ padding: '1.5rem' }}>
                   <div className="accent-gradient-text" style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', fontWeight: 800 }}>#{waitlistData?.position}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700, marginTop: '0.5rem' }}>Live Rank</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700, marginTop: '0.5rem' }}>Queue No.</div>
                 </div>
               </div>
             </div>
