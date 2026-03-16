@@ -35,7 +35,7 @@ const InfoPage = () => {
     <div className="info-page animate-fade-in">
       <div className="container">
         <header className="info-header">
-          <button onClick={handleBackHome} className="back-link" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>
+          <button onClick={handleBackHome} className="back-link">
             <span className="back-arrow">←</span> Back to Home
           </button>
           <h1 className="accent-gradient-text">{page.title}</h1>
