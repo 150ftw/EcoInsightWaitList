@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Benefits from './components/Benefits'
+import AIInsights from './components/AIInsights'
+import TrustSection from './components/TrustSection'
 import HypeSection from './components/HypeSection'
 import WaitlistSignup from './components/WaitlistSignup'
 import FounderSection from './components/FounderSection'
@@ -20,6 +22,8 @@ const LandingPage = () => {
     <>
       <Hero />
       <Benefits />
+      <AIInsights />
+      <TrustSection />
       <HypeSection />
       <WaitlistSignup />
       <FounderSection />
