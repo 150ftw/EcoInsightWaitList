@@ -4,7 +4,7 @@
   color: var(--text-primary);
   background-color: transparent;
   position: relative;
-  z-index: 1;
+  z-index: 2; /* Increased from 1 */
 }
 
 .info-header {
@@ -21,6 +21,9 @@
   font-weight: 600;
   margin-bottom: 2rem;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 100 !important; /* Ensure clickable */
+  cursor: pointer;
 }
 
 .back-link:hover {
