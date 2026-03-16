@@ -35,35 +35,49 @@ export const useWaitlist = () => {
 
   const fetchLiveStats = async (userEmail) => {
     try {
+      console.log('Fetching live stats for:', userEmail);
       const { data: user, error: userError } = await supabase
         .from('waitlist')
         .select('*')
         .eq('email', userEmail)
         .single();
 
-      if (userError || !user) {
+      if (userError) {
+        console.error('Supabase fetch error for user:', userError);
+        if (userError.code === 'PGRST116') {
+          console.log('User not found on waitlist.');
+        }
         setIsSubscribed(false);
         return;
       }
 
-      // Calculate position: (Users with more referrals) OR (Users with same referrals but joined earlier)
+      if (!user) {
+        setIsSubscribed(false);
+        return;
+      }
+
+      // Calculate position
       const { count, error: countError } = await supabase
         .from('waitlist')
         .select('*', { count: 'exact', head: true })
         .or(`referral_count.gt.${user.referral_count},and(referral_count.eq.${user.referral_count},created_at.lt.${user.created_at})`);
 
-      if (countError) throw countError;
+      if (countError) {
+        console.error('Supabase count error:', countError);
+        throw countError;
+      }
 
       const liveData = {
         ...user,
         position: RANK_OFFSET + (count || 0)
       };
 
+      console.log('Successfully fetched live data:', liveData);
       setWaitlistData(liveData);
       setIsSubscribed(true);
       localStorage.setItem('ecoinsight_waitlist', JSON.stringify(liveData));
     } catch (err) {
-      console.error('Error fetching live stats:', err);
+      console.error('Error in fetchLiveStats:', err);
     }
   };
 
