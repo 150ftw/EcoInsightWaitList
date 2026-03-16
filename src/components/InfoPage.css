@@ -14,12 +14,12 @@
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   color: var(--accent-primary);
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 2.5rem;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   z-index: 100 !important;
@@ -27,7 +27,7 @@
 }
 
 .back-arrow {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   line-height: 0;
 }
 
