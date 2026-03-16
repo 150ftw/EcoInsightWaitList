@@ -1,0 +1,116 @@
+.info-page {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+  color: var(--text-primary);
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.info-header {
+  margin-bottom: 4rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  transform: translateX(-5px);
+  color: var(--accent-secondary);
+}
+
+.info-page h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.info-content {
+  max-width: 800px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.info-content h2 {
+  color: var(--text-primary);
+  font-size: 2rem;
+  margin: 3rem 0 1.5rem;
+}
+
+.info-content h3 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+}
+
+.info-content p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.info-content ul {
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.info-content li {
+  margin-bottom: 0.75rem;
+}
+
+.info-content a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.info-content a:hover {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+.info-footer {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .info-page {
+    padding-top: 100px;
+  }
+  
+  .info-header {
+    margin-bottom: 3rem;
+  }
+  
+  .info-content h2 {
+    font-size: 1.75rem;
+  }
+}
