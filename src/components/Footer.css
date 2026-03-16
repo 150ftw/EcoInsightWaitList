@@ -7,10 +7,11 @@
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: 1.5fr 3fr;
+  display: flex;
+  justify-content: space-between;
   gap: 4rem;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .footer-brand {
@@ -46,7 +47,7 @@
 .footer-links-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 6rem;
 }
 
 .footer-column {
@@ -81,12 +82,12 @@
 
 @media (max-width: 968px) {
   .footer-content {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 3rem;
   }
   
   .footer-links-grid {
-    gap: 2rem;
+    gap: 3rem;
   }
 }
 
