@@ -1,0 +1,58 @@
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px 10px 10px;
+  background: rgba(37, 211, 102, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  border-radius: 100px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  z-index: 99999;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(37, 211, 102, 0.1);
+}
+
+.whatsapp-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-label {
+  white-space: nowrap;
+}
+
+.whatsapp-float-btn:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(37, 211, 102, 0.15);
+  border-color: rgba(37, 211, 102, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-float-btn:hover .whatsapp-icon-wrapper {
+  transform: rotate(12deg) scale(1.1);
+}
+
+/* Hide label on very small screens if needed, but keeping it for premium visibility */
+@media (max-width: 480px) {
+  .whatsapp-float-btn {
+    bottom: 20px;
+    right: 20px;
+  }
+}

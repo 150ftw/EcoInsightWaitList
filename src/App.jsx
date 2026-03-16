@@ -9,6 +9,7 @@ import FounderSection from './components/FounderSection'
 import Footer from './components/Footer'
 import InfoPage from './components/InfoPage'
 import DarkVeil from './components/Backgrounds/DarkVeil/DarkVeil'
+import WhatsAppButton from './components/WhatsAppButton'
 
 const LandingPage = () => {
   useEffect(() => {
@@ -77,6 +78,8 @@ function AppContent() {
           resolutionScale={1}
         />
       </div>
+
+      <WhatsAppButton />
     </div>
   );
 }

@@ -91,7 +91,7 @@ export const footerContent = {
       <h3>Support Email</h3>
       <p><a href="mailto:support@joinecoinsight.dev">support@joinecoinsight.dev</a></p>
       <h3>Contact Number</h3>
-      <p><a href="tel:+919667510634">+91 9667510634</a> (Standard rates apply)</p>
+      <p><a href="tel:+919667510634">+91 9667510634</a> (Standard rates may apply)</p>
       <h3>Headquarters</h3>
       <p>Innovative Hub, Cyber City, Gurugram, India</p>
     `
