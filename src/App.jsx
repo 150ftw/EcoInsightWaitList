@@ -54,7 +54,7 @@ function AppContent() {
         </Routes>
       </main>
 
-      <Footer />
+      <Footer style={{ position: 'relative', zIndex: 5 }} />
 
       {/* Global Background Element - Moved to end of DOM for safety */}
       <div style={{
@@ -63,7 +63,7 @@ function AppContent() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          zIndex: 0,
+          zIndex: -1,
           pointerEvents: 'none',
           overflow: 'hidden'
       }}>

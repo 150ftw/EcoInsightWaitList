@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ style }) => {
   return (
-    <footer className="footer">
+    <footer className="footer" style={style}>
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
