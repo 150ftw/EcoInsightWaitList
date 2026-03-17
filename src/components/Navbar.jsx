@@ -33,18 +33,19 @@ const Navbar = () => {
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center',
-        gap: '1rem'
+        gap: '0.5rem', /* Reduced for mobile */
+        padding: '0 1rem' /* Tighter mobile padding */
       }}>
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.5rem, 2vw, 1rem)', textDecoration: 'none' }}>
-          <img src={logo} alt="EcoInsight" style={{ width: 'clamp(32px, 8vw, 48px)', height: 'clamp(32px, 8vw, 48px)' }} />
-          <span className="accent-gradient-text" style={{ fontSize: 'clamp(1.25rem, 5vw, 2rem)', fontWeight: 800, letterSpacing: '-0.03em' }}>EcoInsight</span>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+          <img src={logo} alt="EcoInsight" style={{ width: 'clamp(28px, 6vw, 40px)', height: 'clamp(28px, 6vw, 40px)' }} />
+          <span className="accent-gradient-text" style={{ fontSize: 'clamp(1.1rem, 4vw, 1.5rem)', fontWeight: 800, letterSpacing: '-0.03em' }}>EcoInsight</span>
         </Link>
         <button 
           className="btn-primary" 
-          style={{ padding: 'clamp(0.6rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem)', fontSize: 'clamp(0.85rem, 2vw, 1.1rem)' }}
+          style={{ padding: '0.6rem 1rem', fontSize: '0.85rem', minWidth: 'auto' }}
           onClick={handleJoinClick}
         >
-          Join Waitlist
+          Join Now
         </button>
       </div>
     </nav>

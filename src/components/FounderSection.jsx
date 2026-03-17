@@ -59,7 +59,14 @@ const FounderSection = () => {
             }}>
               "India’s markets are unlike any other — dynamic, complex, and full of untapped opportunity. Yet the tools to understand them have never truly been built for us. EcoInsight changes that. Built by Indians, for Indians — delivering clarity, precision, and real financial intelligence. This is not just access. This is empowerment. Welcome to the future of Bharat’s investing."
             </p>
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div style={{ 
+              display: 'flex', 
+              gap: 'clamp(1rem, 3vw, 1.5rem)', 
+              flexWrap: 'wrap', 
+              justifyContent: 'center',
+              flexDirection: window.innerWidth < 640 ? 'column' : 'row', /* Fallback but ideally handled via className or responsive style */
+              alignItems: 'center'
+            }} className="founder-links">
               <a
                 href="https://www.instagram.com/ecoinsight.ai"
                 target="_blank"
@@ -67,9 +74,10 @@ const FounderSection = () => {
                 style={{
                   color: 'rgba(255, 255, 255, 0.5)',
                   textDecoration: 'none',
-                  fontSize: '0.85rem',
+                  fontSize: '0.9rem',
                   fontWeight: 600,
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  padding: '0.5rem 1rem'
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.5)'}
@@ -83,9 +91,10 @@ const FounderSection = () => {
                 style={{
                   color: 'rgba(255, 255, 255, 0.5)',
                   textDecoration: 'none',
-                  fontSize: '0.85rem',
+                  fontSize: '0.9rem',
                   fontWeight: 600,
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  padding: '0.5rem 1rem'
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-secondary)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.5)'}

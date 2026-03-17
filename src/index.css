@@ -21,8 +21,13 @@
   box-sizing: border-box;
 }
 
-html {
-    background-color: #000000 !important;
+html, body {
+  background-color: #000000 !important;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
 }
 
 body {
@@ -30,12 +35,14 @@ body {
     color: var(--text-primary);
     font-family: var(--font-body);
     line-height: 1.5;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
 #root {
     background-color: transparent !important;
+    width: 100%;
+    overflow-x: hidden !important;
+    position: relative;
 }
 
 .app-landing {

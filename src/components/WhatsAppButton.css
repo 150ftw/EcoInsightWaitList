@@ -70,8 +70,9 @@
 
 @media (max-width: 480px) {
   .whatsapp-float-btn {
-    bottom: 15px;
+    bottom: clamp(60px, 15vh, 100px); /* Lifted higher to clear terminal/founder text */
     right: 15px;
-    transform: scale(0.9);
+    transform: scale(0.8);
+    transform-origin: bottom right;
   }
 }
