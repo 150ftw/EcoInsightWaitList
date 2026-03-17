@@ -67,9 +67,7 @@ const VisionSection = () => {
         </div>
 
         <div className="timeline-container" ref={containerRef}>
-          <div className="timeline-progress-line">
-            <div className="liquid-head"></div>
-          </div>
+          <div className="timeline-progress-line"></div>
           {timeline.map((item, index) => (
             <div key={index} className={`timeline-item animate-fade-in ${item.status}`} style={{ animationDelay: `${index * 0.15}s` }}>
               <div className="timeline-dot"></div>
