@@ -16,6 +16,7 @@ import FounderSection from './components/FounderSection'
 import Footer from './components/Footer'
 import InfoPage from './components/InfoPage'
 import DarkVeil from './components/Backgrounds/DarkVeil/DarkVeil'
+import LiveMarketPulse from './components/LiveMarketPulse'
 import WhatsAppButton from './components/WhatsAppButton'
 
 const LandingPage = () => {
@@ -60,6 +61,7 @@ function AppContent() {
 
   return (
     <div className="app-landing" style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <LiveMarketPulse />
       <Navbar />
       
       <main style={{ flex: 1, position: 'relative', zIndex: 5 }}>
