@@ -1,6 +1,6 @@
 .scroll-reveal-outer {
   position: relative;
-  height: 400vh; /* Shorter, punchier cinematic journey */
+  height: 200vh; /* Ultra-snappy cinematic journey */
   background: black;
   width: 100%;
 }
