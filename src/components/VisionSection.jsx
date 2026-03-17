@@ -2,7 +2,30 @@ import React, { useEffect, useRef } from 'react';
 import './VisionSection.css';
 
 const timeline = [
-  // ... (keep timeline array as is)
+  {
+    period: "Q1 2026",
+    title: "EcoInsight Waitlist & Core Engine",
+    description: "Opening exclusive slots for the initial 5,000 Beta testers. Core Fin-AI model training finalized.",
+    status: "active"
+  },
+  {
+    period: "Q2 2026",
+    title: "Sector Alpha Live",
+    description: "Real-time insights for Top 5 Indian sectors (Tech, Green Energy, BFSI). Direct NSE/BSE low-latency pipes.",
+    status: "upcoming"
+  },
+  {
+    period: "Q3 2026",
+    title: "Global Macro Core",
+    description: "Integrating global macro sentiment and cross-border on-chain capital flow analytics.",
+    status: "upcoming"
+  },
+  {
+    period: "Q4 2026",
+    title: "HNI Portfolio Orchestration",
+    description: "Automated institutional-grade portfolio rebalancing based on AI-governed signals.",
+    status: "upcoming"
+  }
 ];
 
 const VisionSection = () => {
@@ -44,7 +67,9 @@ const VisionSection = () => {
         </div>
 
         <div className="timeline-container" ref={containerRef}>
-          <div className="timeline-progress-line"></div>
+          <div className="timeline-progress-line">
+            <div className="liquid-head"></div>
+          </div>
           {timeline.map((item, index) => (
             <div key={index} className={`timeline-item animate-fade-in ${item.status}`} style={{ animationDelay: `${index * 0.15}s` }}>
               <div className="timeline-dot"></div>
