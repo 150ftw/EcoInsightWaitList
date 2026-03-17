@@ -26,10 +26,11 @@ const ScrollRevealSection = () => {
       let p = (scrollTop - sectionTop) / scrollableDist;
       p = Math.max(0, Math.min(1, p));
       
-      // Update stage based on progress
-      const currentStage = Math.min(stages.length - 1, Math.floor(p * stages.length));
-      if (currentStage !== activeStage) {
-        setActiveStage(currentStage);
+      // Linear stage distribution: 0-0.25, 0.25-0.5, 0.5-0.75, 0.75-1.0
+      const totalStages = stages.length;
+      const stageIndex = Math.min(totalStages - 1, Math.floor(p * totalStages));
+      if (stageIndex !== activeStage) {
+        setActiveStage(stageIndex);
       }
 
       // Smooth 3D Move
