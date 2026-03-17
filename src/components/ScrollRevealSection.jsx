@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ScrollRevealSection.css';
-import dashboardImg from '../assets/dashboard-reveal.png';
 
 const stages = [
   { title: "Macro Nexus", sub: "12B+ Datapoints Synthesized Daily" },
@@ -32,17 +31,20 @@ const ScrollRevealSection = () => {
       
       setProgress(p);
 
-      // Map progress (0-1) to stage index (0-7)
       const stageIndex = Math.min(stages.length - 1, Math.floor(p * stages.length));
       setActiveStage(stageIndex);
 
       if (visualRef.current) {
-        // Deeper zoom for 8 stages (1x to 4x)
-        const scale = 1 + p * 3;
-        const brightness = 1 - p * 0.4;
+        // Extreme depth zoom: Start small (0.5), end massive (30) to pass through
+        const scale = 0.5 + Math.pow(p, 3) * 30;
+        // Fade out at the very end of the zoom
+        const opacity = p > 0.9 ? 1 - (p - 0.9) * 10 : 1;
+        // Blur increases as we get closer to simulate depth of field
+        const blur = p > 0.8 ? (p - 0.8) * 10 : 0;
         
         visualRef.current.style.transform = `scale(${scale})`;
-        visualRef.current.style.filter = `brightness(${brightness}) saturate(${1 + p * 0.5})`;
+        visualRef.current.style.opacity = opacity;
+        visualRef.current.style.filter = `blur(${blur}px)`;
       }
     };
 
@@ -65,7 +67,7 @@ const ScrollRevealSection = () => {
           </div>
 
           <div className="stage-content">
-            <h2 className={`reveal-text ${progress > 0.05 && progress < 0.95 ? 'visible' : ''}`}>
+            <h2 className={`reveal-text ${progress > 0.05 && progress < 0.92 ? 'visible' : ''}`}>
               {stages[activeStage].title}
             </h2>
             <p className={`reveal-subtext ${progress > 0.1 && progress < 0.9 ? 'visible' : ''}`}>
@@ -74,12 +76,12 @@ const ScrollRevealSection = () => {
           </div>
         </div>
 
-        <div className="scroll-reveal-visual" ref={visualRef}>
-          <img 
-            src={dashboardImg} 
-            alt="EcoInsight Portfolio Intelligence" 
-            className="reveal-image"
-          />
+        <div className="scroll-reveal-visual brand-canvas" ref={visualRef}>
+          <div className="brand-logo-text">
+            <span className="brand-word">ECOINSIGHT</span>
+            <span className="brand-ai">AI</span>
+          </div>
+          <div className="brand-glow-ring"></div>
         </div>
       </div>
     </section>
