@@ -1,6 +1,6 @@
 .scroll-reveal-outer {
   position: relative;
-  height: 480vh; /* More space for smoother drama */
+  height: 300vh; /* Snappier, faster narrative flow */
   background: #000;
   width: 100%;
   overflow: visible !important; /* Required for sticky children */
