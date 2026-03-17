@@ -132,5 +132,11 @@
   .footer-brand {
     align-items: center;
     text-align: center;
+    gap: 0.75rem; /* Reduced from 1.5rem to fix huge gap */
+  }
+
+  .footer-description {
+    font-size: 0.95rem; /* Scaled down for mobile balance */
+    max-width: 280px;
   }
 }
