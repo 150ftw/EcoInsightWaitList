@@ -20,15 +20,13 @@ const ScrollRevealSection = () => {
       setProgress(p);
 
       if (visualRef.current) {
-        // Extreme depth zoom: Start small (0.5), end massive (30) to pass through
-        const scale = 0.5 + Math.pow(p, 3) * 30;
-        // Fade out at the very end of the zoom
-        const opacity = p > 0.9 ? 1 - (p - 0.9) * 10 : 1;
-        // Blur increases as we get closer to simulate depth of field
-        const blur = p > 0.8 ? (p - 0.8) * 10 : 0;
+        // True 3D Zoom: Start from deep space (-5000px) and pass camera (800px)
+        const zPos = -5000 + (p * 5800);
+        const opacity = p < 0.1 ? p * 10 : (p > 0.95 ? (1 - p) * 20 : 1);
+        const blur = p < 0.2 ? (0.2 - p) * 20 : (p > 0.85 ? (p - 0.85) * 40 : 0);
         
-        visualRef.current.style.transform = `scale(${scale})`;
-        visualRef.current.style.opacity = opacity;
+        visualRef.current.style.transform = `translateZ(${zPos}px)`;
+        visualRef.current.style.opacity = Math.max(0, Math.min(1, opacity));
         visualRef.current.style.filter = `blur(${blur}px)`;
       }
     };
@@ -42,6 +40,8 @@ const ScrollRevealSection = () => {
   return (
     <section className="scroll-reveal-outer" ref={outerRef}>
       <div className="scroll-reveal-sticky">
+        {/* Layered Atmospheric Backgrounds */}
+        <div className="atmospheric-fog"></div>
         <div className="reveal-glow"></div>
         
         <div className="scroll-reveal-overlay">
