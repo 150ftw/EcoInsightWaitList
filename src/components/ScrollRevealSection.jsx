@@ -20,40 +20,39 @@ const ScrollRevealSection = () => {
       const rect = outerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
+      // Normalize p to the active scrollable area
       const totalHeight = rect.height - windowHeight;
       let p = -rect.top / totalHeight;
-      p = Math.max(0, Math.min(1.1, p)); // Allow slight overshoot for exit
+      p = Math.max(0, Math.min(1, p));
       
-      // Stage Calculation: 0-0.2, 0.2-0.4, 0.4-0.6, 0.6-1.0
-      let stageIndex = 0;
-      if (p > 0.7) stageIndex = 3;
-      else if (p > 0.4) stageIndex = 2;
-      else if (p > 0.15) stageIndex = 1;
-      
+      // Linear stage distribution: 0-0.25, 0.25-0.5, 0.5-0.75, 0.75-1.0
+      const stageIndex = Math.min(stages.length - 1, Math.floor(p * stages.length));
       setActiveStage(stageIndex);
 
       if (visualRef.current) {
-        // Continuous 3D Zoom: Start from deep space (-5000) and pass camera (+1000)
-        // We use a more linear zoom for the text passage
-        const zPos = -4000 + (p * 4500); 
+        // More aggressive zoom-in: Start closer (-2000 instead of -5000)
+        // and accelerate as it passes the camera (+2000)
+        const zPos = -2500 + (p * 5000); 
         
-        // Dynamic opacity for text transitions
-        // Fade in/out at the start/end of the WHOLE scroll, 
-        // but keep text visible during transitions for a "passing through" feel
-        const fadeOut = p > 0.9 ? (1 - p) * 10 : 1;
-        const fadeIn = p < 0.05 ? p * 20 : 1;
+        // Dynamic opacity: Fade in fast at the very start
+        const fadeIn = p < 0.05 ? (p / 0.05) : 1;
+        // Fade out at the very end to transition to the next section
+        const fadeOut = p > 0.9 ? (1 - p) / 0.1 : 1;
         
-        // Individual stage opacity to avoid text overlap or flickering
+        // Stage-based "bounce/flicker" prevention
         const stageProgress = (p * stages.length) % 1;
-        const transitionOpacity = stageProgress < 0.1 ? stageProgress * 10 : (stageProgress > 0.9 ? (1 - stageProgress) * 10 : 1);
+        const stageOpacity = stageProgress < 0.1 ? stageProgress * 10 : (stageProgress > 0.9 ? (1 - stageProgress) * 10 : 1);
 
         visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px)`;
-        visualRef.current.style.opacity = Math.max(0, Math.min(1, fadeIn * fadeOut * transitionOpacity));
+        visualRef.current.style.opacity = Math.max(0, Math.min(1, fadeIn * fadeOut * stageOpacity));
         
-        // High Contrast Glow shift
-        const glowScale = 1 + (p * 2);
+        // Sync the glow ring to stage progress
         const ring = visualRef.current.querySelector('.brand-glow-ring');
-        if (ring) ring.style.transform = `translate(-50%, -50%) scale(${glowScale})`;
+        if (ring) {
+          const glowScale = 0.5 + (p * 2);
+          ring.style.transform = `translate(-50%, -50%) scale(${glowScale})`;
+          ring.style.opacity = 0.3 + (stageOpacity * 0.4);
+        }
       }
     };
 

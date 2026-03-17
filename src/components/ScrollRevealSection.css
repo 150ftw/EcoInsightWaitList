@@ -48,18 +48,20 @@
 .narrative-text {
   font-size: clamp(2.5rem, 12vw, 8rem);
   font-weight: 900;
-  color: white;
+  color: white; /* Fallback for browsers that don't support text-clip */
   line-height: 1.1;
   letter-spacing: -0.04em;
   text-shadow: 
-    0 0 30px rgba(139, 92, 246, 0.4),
-    0 0 60px rgba(139, 92, 246, 0.2);
+    0 0 20px rgba(139, 92, 246, 0.6),
+    0 0 40px rgba(139, 92, 246, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.5);
   margin: 0;
-  background: linear-gradient(to bottom, #fff, #d8b4fe);
+  background: linear-gradient(to bottom, #ffffff 30%, #d8b4fe 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
   width: 95%;
+  will-change: transform, opacity;
 }
 
 .motto-main {
