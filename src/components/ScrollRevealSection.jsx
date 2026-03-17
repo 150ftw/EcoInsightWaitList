@@ -17,55 +17,66 @@ const ScrollRevealSection = () => {
     const handleScroll = () => {
       if (!outerRef.current || !visualRef.current) return;
 
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const sectionTop = outerRef.current.offsetTop;
-      const sectionHeight = outerRef.current.offsetHeight;
+      const rect = outerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
-      const scrollableDist = sectionHeight - windowHeight;
-      let p = (scrollTop - sectionTop) / scrollableDist;
+      // Calculate progress based on container position relative to viewport
+      // rect.top is 0 when the section hits the top
+      // rect.top is -(height - windowHeight) when it's done
+      const scrollableDist = rect.height - windowHeight;
+      let p = -rect.top / scrollableDist;
       p = Math.max(0, Math.min(1, p));
       
-      // Linear stage distribution: 0-0.25, 0.25-0.5, 0.5-0.75, 0.75-1.0
       const totalStages = stages.length;
-      const stageIndex = Math.min(totalStages - 1, Math.floor(p * totalStages));
-      if (stageIndex !== activeStage) {
-        setActiveStage(stageIndex);
+      const currentStage = Math.min(totalStages - 1, Math.floor(p * totalStages));
+      
+      if (currentStage !== activeStage) {
+        setActiveStage(currentStage);
       }
 
-      // Smooth 3D Move
-      // Start slightly deep and pass THROUGH the camera for an immersive effect
-      const zPos = -1800 + (p * 3500); 
+      // Cinematic Zoom Logic
+      // Start closer for impact (-1500) and pass through camera (+2000)
+      const zPos = -1500 + (p * 3500); 
       
-      // Global Opacity Curve: Sharp fade in at 0%, Hold through 90%, Fade out to 100%
-      let globalOpacity = 1;
-      if (p < 0.02) globalOpacity = p * 50; // Ultra-fast fade in
-      if (p > 0.95) globalOpacity = (1 - p) * 20; // Fade out as we leave
+      // Global Smooth Opacity
+      let finalOpacity = 1;
+      if (p < 0.01) finalOpacity = p * 100;
+      if (p > 0.98) finalOpacity = (1 - p) * 50;
 
-      // Stage Transition Opacity (Subtle flicker prevention)
-      const stageProgress = (p * stages.length) % 1;
+      // Subtle Stage Fade
+      const stageProgress = (p * totalStages) % 1;
       let stageFade = 1;
-      if (stageProgress < 0.08) stageFade = stageProgress * 12.5; 
-      if (stageProgress > 0.92) stageFade = (1 - stageProgress) * 12.5;
-
-      const finalOpacity = Math.max(0, Math.min(1, globalOpacity * stageFade));
+      if (stageProgress < 0.05) stageFade = stageProgress * 20;
+      if (stageProgress > 0.95) stageFade = (1 - stageProgress) * 20;
 
       visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px)`;
-      visualRef.current.style.opacity = finalOpacity;
+      visualRef.current.style.opacity = Math.max(0, Math.min(1, finalOpacity * stageFade));
       
       const ring = visualRef.current.querySelector('.brand-glow-ring');
       if (ring) {
-        const ringScale = 0.5 + (p * 3);
+        const ringScale = 0.5 + (p * 4);
         ring.style.transform = `translate(-50%, -50%) scale(${ringScale})`;
-        ring.style.opacity = finalOpacity * 0.4;
+        ring.style.opacity = (finalOpacity * stageFade) * 0.3;
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    // Use IntersectionObserver to only listen when section is visible
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+      } else {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }, { threshold: 0.01 });
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeStage]); // Re-bind if stage changes to catch DOM updates
+    if (outerRef.current) observer.observe(outerRef.current);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (outerRef.current) observer.unobserve(outerRef.current);
+    };
+  }, [activeStage]);
 
   return (
     <section className="scroll-reveal-outer" ref={outerRef}>

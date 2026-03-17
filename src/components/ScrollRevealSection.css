@@ -1,9 +1,9 @@
 .scroll-reveal-outer {
   position: relative;
-  height: 450vh; /* Increased to give stages more breathing room */
+  height: 480vh; /* More space for smoother drama */
   background: #000;
   width: 100%;
-  overflow: visible; /* Stickiness helper */
+  overflow: visible !important; /* Required for sticky children */
 }
 
 .scroll-reveal-sticky {
@@ -17,7 +17,7 @@
   justify-content: center;
   overflow: hidden;
   background: #000;
-  perspective: 1500px;
+  perspective: 1200px; /* Tighter perspective for better 3D depth */
   perspective-origin: center center;
   z-index: 100;
 }

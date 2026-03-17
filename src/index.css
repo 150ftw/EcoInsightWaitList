@@ -26,7 +26,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  overflow-x: hidden !important;
+  overflow-x: clip !important; /* Critical: hidden on html/body breaks position: sticky */
   position: relative;
 }
 
@@ -41,7 +41,7 @@ body {
 #root {
     background-color: transparent !important;
     width: 100%;
-    overflow-x: hidden !important;
+    overflow-x: clip !important; /* Critical: hidden breaks position: sticky */
     position: relative;
 }
 
