@@ -49,9 +49,13 @@ const ScrollRevealSection = () => {
         </div>
 
         <div className="scroll-reveal-visual brand-canvas" ref={visualRef}>
-          <div className="brand-logo-text">
-            <span className="brand-word">ECOINSIGHT</span>
-            <span className="brand-ai">AI</span>
+          <div className="brand-logo-text motto-container">
+            <h2 className="motto-main">
+              “By Indians, For Indian Investors.”
+            </h2>
+            <p className="motto-support">
+              “Making Markets Make Sense for India.”
+            </p>
           </div>
           <div className="brand-glow-ring"></div>
         </div>
