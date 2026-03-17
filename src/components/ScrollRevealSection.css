@@ -1,6 +1,6 @@
 .scroll-reveal-outer {
   position: relative;
-  height: 200vh; /* Ultra-snappy cinematic journey */
+  height: 400vh; /* 4 stages of immersion */
   background: black;
   width: 100%;
 }
@@ -15,7 +15,7 @@
   justify-content: center;
   overflow: hidden;
   background: black;
-  perspective: 1200px; /* Crucial for 3D depth */
+  perspective: 1200px;
   perspective-origin: center center;
 }
 
@@ -31,29 +31,31 @@
   will-change: transform, opacity, filter;
 }
 
-.brand-logo-text.motto-container {
+.brand-logo-text.staged-narrative {
   font-family: 'Outfit', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
   text-align: center;
   transform-style: preserve-3d;
   width: 90vw;
   max-width: 1400px;
 }
 
-.motto-main {
-  font-size: clamp(2.5rem, 8vw, 6.5rem);
+.narrative-text {
+  font-size: clamp(2rem, 10vw, 8rem);
   font-weight: 900;
   color: white;
-  line-height: 1.1;
+  line-height: 1;
   letter-spacing: -0.04em;
   text-shadow: 
     0 0 40px rgba(139, 92, 246, 0.4),
     0 0 80px rgba(139, 92, 246, 0.2);
-  position: relative;
   margin: 0;
+  background: linear-gradient(to bottom, #fff, #d8b4fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Glass Shimmer Effect for Motto */
