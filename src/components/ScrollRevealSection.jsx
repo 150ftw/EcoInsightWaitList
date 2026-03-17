@@ -112,7 +112,7 @@ const ScrollRevealSection = () => {
             <h2 className={`narrative-text ${activeStage === 1 ? 'motto-main' : ''}`}>
               {stages[activeStage].text}
             </h2>
-            {activeStage === 2 && (
+            {activeStage === 2 && stages[activeStage].text !== "Making Markets Make Sense for India" && (
               <p className="motto-support">Making Markets Make Sense for India</p>
             )}
           </div>
