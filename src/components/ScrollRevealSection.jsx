@@ -24,82 +24,81 @@ const ScrollRevealSection = () => {
       const windowHeight = window.innerHeight;
       
       const scrollableDist = rect.height - windowHeight;
+      // Calculate progress more robustly
       let p = -rect.top / scrollableDist;
       
-      // Safety: If we are way above or way below, ensure we don't trap state
-      if (p < -0.2 || p > 1.2) return; 
+      // Expand safety range to prevent premature hiding
+      if (p < -0.5 || p > 1.5) return; 
 
       p = Math.max(0, Math.min(1, p));
       
       const totalStages = stages.length;
-      const currentStage = Math.min(totalStages - 1, Math.floor(p * totalStages));
       
-      if (currentStage !== activeStageRef.current) {
+      // --- Cinematic Animation Constants ---
+      // Distribute stages across 0-0.9 range, 0.9-1 for final zoom
+      const narrateProgress = p / 0.9; 
+      const currentStage = Math.min(totalStages - 1, Math.floor(narrateProgress * totalStages));
+      const stageProgress = (narrateProgress * totalStages) % 1;
+      
+      if (currentStage !== activeStageRef.current && currentStage >= 0 && currentStage < totalStages) {
         activeStageRef.current = currentStage;
         setActiveStage(currentStage);
       }
 
-      // --- Cinematic Animation Constants ---
-      // Distribute stages across the 0-0.85 range for mottoes, 0.85-1 for final zoom
-      const narrateProgress = p / 0.85; 
-      const currentStageFlat = Math.floor(narrateProgress * (totalStages - 1));
-      const stageProgress = (narrateProgress * (totalStages - 1)) % 1;
-      
       // 1. Zoom Logic
       let zPos = 0;
       let scale = 1;
       
-      if (p > 0.85) {
-        // FINAL ZOOM THROUGH: Accelerate but clamp at 2500px to avoid "invisible blurry" gaps
-        const exitP = (p - 0.85) / 0.15; 
-        zPos = exitP * 2500; 
-        scale = 1 + (exitP * 6);
+      if (p > 0.9) {
+        // FINAL ZOOM THROUGH: Accelerate
+        const exitP = (p - 0.9) / 0.1; 
+        zPos = exitP * 3000; 
+        scale = 1 + (exitP * 8);
       } else {
-        // PER-STAGE ZOOM: Snappier grow
-        scale = 0.9 + (stageProgress * 0.3); 
+        // PER-STAGE ZOOM: Dynamic growth
+        scale = 0.85 + (stageProgress * 0.4); 
       }
 
       // 2. Opacity Logic
       let finalOpacity = 1;
-      if (p < 0.05) finalOpacity = p / 0.05; // Faster fade in
-      if (p > 0.98) finalOpacity = (1 - p) / 0.02; // Sharp exit fade
+      if (p < 0.05) finalOpacity = p / 0.05; 
+      if (p > 0.95) finalOpacity = (1 - p) / 0.05; 
 
-      // Sub-stage Transition Fades (Killer of Dead Zones)
-      // We want the text to stay fully opaque for 70% of the stage, then fade quickly
+      // Stage Transition Fades
       let stageFade = 1;
-      if (stageProgress < 0.15) stageFade = stageProgress / 0.15;
-      if (stageProgress > 0.85) stageFade = (1 - stageProgress) / 0.15;
+      if (stageProgress < 0.2) stageFade = stageProgress / 0.2;
+      if (stageProgress > 0.8) stageFade = (1 - stageProgress) / 0.2;
 
       const combinedOpacity = Math.max(0, Math.min(1, finalOpacity * stageFade));
       
-      // Apply transforms directly to DOM for performance
+      // Apply transforms
       visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px) scale(${scale})`;
       visualRef.current.style.opacity = combinedOpacity;
-      // Safety: Only hide if truly gone to prevent jarring snap-backs
-      visualRef.current.style.visibility = combinedOpacity < 0.001 ? 'hidden' : 'visible';
+      
+      // Safety: Only hide if truly gone, but be less aggressive than before
+      visualRef.current.style.visibility = combinedOpacity < 0.01 ? 'hidden' : 'visible';
       
       const ring = visualRef.current.querySelector('.brand-glow-ring');
       if (ring) {
-        const ringScale = 0.5 + (p * 5);
+        const ringScale = 0.5 + (p * 6);
         ring.style.transform = `translate(-50%, -50%) scale(${ringScale})`;
-        ring.style.opacity = combinedOpacity * 0.4;
+        ring.style.opacity = combinedOpacity * 0.5;
       }
     };
 
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Initial check
+        handleScroll(); 
       } else {
         window.removeEventListener('scroll', handleScroll);
-        // Robust Reset: If we leave the section, make sure it's clean
-        // But DON'T touch global visibility
+        // Clean reset without blocking future reveals
         if (visualRef.current) {
           visualRef.current.style.opacity = 0;
           visualRef.current.style.visibility = 'hidden';
         }
       }
-    }, { threshold: 0 }); // 0 threshold ensures we catch the very first/last pixel
+    }, { threshold: 0, rootMargin: '10% 0px' }); // Added margin to trigger earlier
 
     if (outerRef.current) observer.observe(outerRef.current);
 
