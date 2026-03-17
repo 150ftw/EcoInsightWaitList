@@ -6,20 +6,21 @@ const FounderSection = () => {
     <section id="founder-section" style={{ padding: 'clamp(2rem, 5vw, 40px) 0' }}>
       <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
         <div style={{
-          padding: 'clamp(2rem, 5vw, 3.5rem)',
+          padding: 'clamp(1.5rem, 5vw, 3.5rem)',
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           gap: 'clamp(1.5rem, 5vw, 3rem)',
           maxWidth: '850px',
-          width: '100%',
+          width: 'calc(100% - 2rem)',
+          margin: '0 1rem',
           backgroundColor: 'rgba(255, 255, 255, 0.02)',
           borderRadius: '24px',
           border: '1px solid rgba(255, 255, 255, 0.05)',
           backdropFilter: 'blur(20px)',
           flexWrap: 'wrap',
           justifyContent: 'center'
-        }}>
+        }} className="founder-card-inner">
           <div style={{ flexShrink: 0 }}>
             <img
               src={founderImg}

@@ -111,5 +111,16 @@
 @media (max-width: 480px) {
   .footer-links-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-column {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-brand {
+    align-items: center;
+    text-align: center;
   }
 }

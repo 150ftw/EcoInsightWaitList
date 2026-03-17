@@ -78,23 +78,23 @@ const WaitlistSignup = () => {
                 #{waitlistData?.position}
               </div>
               
-              <div style={{ margin: 'clamp(2rem, 6vw, 3.1rem) 0', padding: 'clamp(1.5rem, 5vw, 2.5rem)', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '24px', border: '1px dashed var(--glass-border)', position: 'relative' }}>
+              <div className="referral-link-container" style={{ margin: 'clamp(2rem, 6vw, 3.1rem) 0', padding: 'clamp(1.5rem, 5vw, 2.5rem)', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '24px', border: '1px dashed var(--glass-border)', position: 'relative' }}>
                 <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', marginBottom: '1rem', fontWeight: 800, color: 'white' }}>🚀 Skip the Queue</p>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '1.5rem' }}>Successfully refer <strong>3 foundational members</strong> to jump to the front of the line for instant portal access.</p>
-                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <div className="referral-input-group" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <input 
                     readOnly 
                     value={getReferralLink()} 
                     className="input-field" 
-                    style={{ flex: 1, minWidth: '200px', fontSize: '0.85rem', background: 'rgba(0,0,0,0.2)' }} 
+                    style={{ flex: 1, minWidth: 'min(300px, 100%)', fontSize: '0.85rem', background: 'rgba(0,0,0,0.2)' }} 
                   />
-                  <button onClick={copyLink} className="btn-primary" style={{ flex: '1 0 auto', padding: '0.75rem 1.5rem', fontSize: '0.9rem' }}>
+                  <button onClick={copyLink} className="btn-primary" style={{ flex: '1 0 auto', padding: '0.75rem 1.5rem', fontSize: '0.9rem', width: 'auto' }}>
                     {copySuccess ? 'Copied!' : 'Copy Link'}
                   </button>
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1.5rem' }}>
+              <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1.5rem' }}>
                 <div className="glass-card" style={{ padding: '1.5rem' }}>
                   <div className="accent-gradient-text" style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', fontWeight: 800 }}>{waitlistData?.referral_count || 0}</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700, marginTop: '0.5rem' }}>Network Boost</div>
