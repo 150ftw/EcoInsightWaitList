@@ -1,21 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ScrollRevealSection.css';
 
-const stages = [
-  { title: "Macro Nexus", sub: "12B+ Datapoints Synthesized Daily" },
-  { title: "Sentiment Layer", sub: "Analyzing 500+ Institutional Sources" },
-  { title: "Alpha Screener", sub: "Institutional Precision for NSE/BSE" },
-  { title: "Capital Flows", sub: "Real-Time Global Money Mapping" },
-  { title: "Risk Engine", sub: "Dynamic Portfolio Delta Tracking" },
-  { title: "Cycle Detection", sub: "Structural Shifts Identified" },
-  { title: "Conviction Builder", sub: "Intelligence Tailored to You" },
-  { title: "The Elite Tier", sub: "Exclusive Access to the AI-Age" }
-];
-
 const ScrollRevealSection = () => {
   const outerRef = useRef(null);
   const visualRef = useRef(null);
-  const [activeStage, setActiveStage] = useState(0);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -30,9 +18,6 @@ const ScrollRevealSection = () => {
       p = Math.max(0, Math.min(1, p));
       
       setProgress(p);
-
-      const stageIndex = Math.min(stages.length - 1, Math.floor(p * stages.length));
-      setActiveStage(stageIndex);
 
       if (visualRef.current) {
         // Extreme depth zoom: Start small (0.5), end massive (30) to pass through
@@ -60,20 +45,7 @@ const ScrollRevealSection = () => {
         <div className="reveal-glow"></div>
         
         <div className="scroll-reveal-overlay">
-          <div className="stage-indicators">
-            {stages.map((_, i) => (
-              <div key={i} className={`stage-dot ${i === activeStage ? 'active' : ''}`} />
-            ))}
-          </div>
-
-          <div className="stage-content">
-            <h2 className={`reveal-text ${progress > 0.05 && progress < 0.92 ? 'visible' : ''}`}>
-              {stages[activeStage].title}
-            </h2>
-            <p className={`reveal-subtext ${progress > 0.1 && progress < 0.9 ? 'visible' : ''}`}>
-              {stages[activeStage].sub}
-            </p>
-          </div>
+          {/* Narrative text removed to focus on brand emergence */}
         </div>
 
         <div className="scroll-reveal-visual brand-canvas" ref={visualRef}>
