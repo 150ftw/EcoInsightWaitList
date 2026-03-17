@@ -46,12 +46,13 @@
   font-size: clamp(2rem, 10vw, 8rem);
   font-weight: 900;
   color: white;
-  line-height: 1;
+  line-height: 1.15; /* Increased to prevent descender clipping */
   letter-spacing: -0.04em;
   text-shadow: 
     0 0 40px rgba(139, 92, 246, 0.4),
     0 0 80px rgba(139, 92, 246, 0.2);
   margin: 0;
+  padding-bottom: 0.1em; /* Ensures room for 'g' and 'y' descenders */
   background: linear-gradient(to bottom, #fff, #d8b4fe);
   -webkit-background-clip: text;
   background-clip: text;
