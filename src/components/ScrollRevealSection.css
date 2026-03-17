@@ -1,22 +1,25 @@
 .scroll-reveal-outer {
   position: relative;
-  height: 400vh; /* 4 stages of immersion */
-  background: black;
+  height: 450vh; /* Increased to give stages more breathing room */
+  background: #000;
   width: 100%;
+  overflow: visible; /* Stickiness helper */
 }
 
 .scroll-reveal-sticky {
   position: sticky;
   top: 0;
+  left: 0;
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: black;
-  perspective: 2000px; /* Increased for smoother zoom transition */
+  background: #000;
+  perspective: 1500px;
   perspective-origin: center center;
+  z-index: 100;
 }
 
 .scroll-reveal-visual.brand-canvas {

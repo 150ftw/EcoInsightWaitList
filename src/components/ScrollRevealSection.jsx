@@ -15,52 +15,56 @@ const ScrollRevealSection = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!outerRef.current) return;
+      if (!outerRef.current || !visualRef.current) return;
 
-      const rect = outerRef.current.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const sectionTop = outerRef.current.offsetTop;
+      const sectionHeight = outerRef.current.offsetHeight;
       const windowHeight = window.innerHeight;
       
-      // Normalize p to the active scrollable area
-      const totalHeight = rect.height - windowHeight;
-      let p = -rect.top / totalHeight;
+      const scrollableDist = sectionHeight - windowHeight;
+      let p = (scrollTop - sectionTop) / scrollableDist;
       p = Math.max(0, Math.min(1, p));
       
-      // Linear stage distribution: 0-0.25, 0.25-0.5, 0.5-0.75, 0.75-1.0
-      const stageIndex = Math.min(stages.length - 1, Math.floor(p * stages.length));
-      setActiveStage(stageIndex);
+      // Update stage based on progress
+      const currentStage = Math.min(stages.length - 1, Math.floor(p * stages.length));
+      if (currentStage !== activeStage) {
+        setActiveStage(currentStage);
+      }
 
-      if (visualRef.current) {
-        // More aggressive zoom-in: Start closer (-2000 instead of -5000)
-        // and accelerate as it passes the camera (+2000)
-        const zPos = -2500 + (p * 5000); 
-        
-        // Dynamic opacity: Fade in fast at the very start
-        const fadeIn = p < 0.05 ? (p / 0.05) : 1;
-        // Fade out at the very end to transition to the next section
-        const fadeOut = p > 0.9 ? (1 - p) / 0.1 : 1;
-        
-        // Stage-based "bounce/flicker" prevention
-        const stageProgress = (p * stages.length) % 1;
-        const stageOpacity = stageProgress < 0.1 ? stageProgress * 10 : (stageProgress > 0.9 ? (1 - stageProgress) * 10 : 1);
+      // Smooth 3D Move
+      // Start slightly deep and pass THROUGH the camera for an immersive effect
+      const zPos = -1800 + (p * 3500); 
+      
+      // Global Opacity Curve: Sharp fade in at 0%, Hold through 90%, Fade out to 100%
+      let globalOpacity = 1;
+      if (p < 0.02) globalOpacity = p * 50; // Ultra-fast fade in
+      if (p > 0.95) globalOpacity = (1 - p) * 20; // Fade out as we leave
 
-        visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px)`;
-        visualRef.current.style.opacity = Math.max(0, Math.min(1, fadeIn * fadeOut * stageOpacity));
-        
-        // Sync the glow ring to stage progress
-        const ring = visualRef.current.querySelector('.brand-glow-ring');
-        if (ring) {
-          const glowScale = 0.5 + (p * 2);
-          ring.style.transform = `translate(-50%, -50%) scale(${glowScale})`;
-          ring.style.opacity = 0.3 + (stageOpacity * 0.4);
-        }
+      // Stage Transition Opacity (Subtle flicker prevention)
+      const stageProgress = (p * stages.length) % 1;
+      let stageFade = 1;
+      if (stageProgress < 0.08) stageFade = stageProgress * 12.5; 
+      if (stageProgress > 0.92) stageFade = (1 - stageProgress) * 12.5;
+
+      const finalOpacity = Math.max(0, Math.min(1, globalOpacity * stageFade));
+
+      visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px)`;
+      visualRef.current.style.opacity = finalOpacity;
+      
+      const ring = visualRef.current.querySelector('.brand-glow-ring');
+      if (ring) {
+        const ringScale = 0.5 + (p * 3);
+        ring.style.transform = `translate(-50%, -50%) scale(${ringScale})`;
+        ring.style.opacity = finalOpacity * 0.4;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeStage]); // Re-bind if stage changes to catch DOM updates
 
   return (
     <section className="scroll-reveal-outer" ref={outerRef}>
