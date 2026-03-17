@@ -34,28 +34,52 @@ const ScrollRevealSection = () => {
         setActiveStage(currentStage);
       }
 
-      // Global Smooth Opacity
-      let finalOpacity = 1;
-      if (p < 0.01) finalOpacity = p * 100;
-      if (p > 0.98) finalOpacity = (1 - p) * 50;
-
-      // Subtle Stage Fade
+      // --- Cinematic Animation Constants ---
       const stageProgress = (p * totalStages) % 1;
+      
+      // 1. Zoom Logic
+      let zPos = 0;
+      let scale = 1;
+      
+      if (p > 0.85) {
+        // FINAL ZOOM THROUGH: Accelerate through the camera at the end
+        const exitP = (p - 0.85) / 0.15; // 0 to 1
+        zPos = exitP * 4000; // Fly through
+        scale = 1 + (exitP * 10);
+      } else {
+        // PER-STAGE ZOOM: Subtle grow as you scroll through each text
+        scale = 0.8 + (stageProgress * 0.4); 
+      }
+
+      // 2. Opacity Logic
+      let finalOpacity = 1;
+      
+      // First Scene Fade In (0% to 10% of total scroll)
+      if (p < 0.1) {
+        finalOpacity = p / 0.1;
+      }
+      
+      // Last Scene Zoom-through Fade Out (accelerated at the very end)
+      if (p > 0.95) {
+        finalOpacity = (1 - p) / 0.05;
+      }
+
+      // Sub-stage Transition Fades (flicker prevention)
       let stageFade = 1;
-      if (stageProgress < 0.05) stageFade = stageProgress * 20;
-      if (stageProgress > 0.95) stageFade = (1 - stageProgress) * 20;
+      if (stageProgress < 0.1) stageFade = stageProgress * 10;
+      if (stageProgress > 0.9) stageFade = (1 - stageProgress) * 10;
 
       const combinedOpacity = Math.max(0, Math.min(1, finalOpacity * stageFade));
       
-      // Removed 3D Zoom (zPos) per user request for readability
-      visualRef.current.style.transform = `translate3d(0, 0, 0)`;
+      // Apply transforms
+      visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px) scale(${scale})`;
       visualRef.current.style.opacity = combinedOpacity;
       
       const ring = visualRef.current.querySelector('.brand-glow-ring');
       if (ring) {
-        const ringScale = 0.5 + (p * 4);
+        const ringScale = 0.5 + (p * 5);
         ring.style.transform = `translate(-50%, -50%) scale(${ringScale})`;
-        ring.style.opacity = combinedOpacity * 0.3;
+        ring.style.opacity = combinedOpacity * 0.4;
       }
     };
 
