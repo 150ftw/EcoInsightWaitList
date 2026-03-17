@@ -1,6 +1,6 @@
 .scroll-reveal-outer {
   position: relative;
-  height: 800vh; /* 8 stages of immersion */
+  height: 400vh; /* Shorter, punchier cinematic journey */
   background: black;
   width: 100%;
 }
