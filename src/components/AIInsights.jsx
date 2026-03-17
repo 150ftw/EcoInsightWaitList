@@ -72,6 +72,28 @@ const AIInsights = () => {
                 </tr>
               </tbody>
             </table>
+
+            {/* Mobile Optimized View */}
+            <div className="mobile-comparison-list">
+              {[
+                { f: "Real-Time Data", e: "✓ Live NSE/BSE", o: "✕ Cutoffs" },
+                { f: "On-Chain", e: "✓ Institutional", o: "✕ Retail Only" },
+                { f: "Fiscal Impact", e: "✓ Predictive", o: "✕ Reactive" },
+                { f: "Trade Alpha", e: "✓ High Signal", o: "✕ Generic" }
+              ].map((item, id) => (
+                <div key={id} className="mobile-comparison-item">
+                  <h4>{item.f}</h4>
+                  <div className="comparison-row">
+                    <span className="comparison-label">EcoInsight</span>
+                    <span className="check">{item.e}</span>
+                  </div>
+                  <div className="comparison-row">
+                    <span className="comparison-label">Others</span>
+                    <span className="cross">{item.o}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -24,6 +24,7 @@ const Footer = ({ style }) => {
 
           <div className="footer-links-grid">
             <div className="footer-column">
+              <h4 className="footer-column-title">Platform</h4>
               <Link to="/info/help-center" className="footer-link">Help Center</Link>
               <Link to="/info/knowledge-base" className="footer-link">Knowledge Base</Link>
               <Link to="/info/network-status" className="footer-link">Network Status</Link>
@@ -31,6 +32,7 @@ const Footer = ({ style }) => {
             </div>
             
             <div className="footer-column">
+              <h4 className="footer-column-title">Company</h4>
               <Link to="/info/about-us" className="footer-link">About Us</Link>
               <Link to="/info/careers" className="footer-link">Careers</Link>
               <Link to="/info/partners" className="footer-link">Partners</Link>
@@ -39,6 +41,7 @@ const Footer = ({ style }) => {
             </div>
 
             <div className="footer-column">
+              <h4 className="footer-column-title">Legal</h4>
               <Link to="/info/privacy-policy" className="footer-link">Privacy Policy</Link>
               <Link to="/info/terms-of-service" className="footer-link">Terms of Service</Link>
               <Link to="/info/acceptable-use-policy" className="footer-link">Acceptable Use Policy</Link>

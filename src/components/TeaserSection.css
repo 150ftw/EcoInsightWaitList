@@ -116,9 +116,27 @@
 
 @media (max-width: 768px) {
   .teaser-mockup {
-    height: 500px;
+    height: 480px;
+    border-radius: 20px;
   }
+  
+  .mockup-overlay {
+    padding: 1.25rem; /* Reduced from 2rem */
+  }
+
   .mockup-overlay h3 {
-    font-size: 2rem;
+    font-size: 1.75rem; /* Scaled down */
+    margin-bottom: 1rem;
+  }
+
+  .mockup-overlay p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .coming-soon-badge {
+    padding: 0.35rem 1rem;
+    font-size: 0.7rem;
+    margin-bottom: 1.5rem;
   }
 }

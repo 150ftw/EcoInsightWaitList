@@ -56,6 +56,16 @@
   gap: 1.25rem;
 }
 
+.footer-column-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
 .footer-link {
   color: var(--text-secondary);
   text-decoration: none;
