@@ -3,16 +3,15 @@ import './ScrollRevealSection.css';
 
 const stages = [
   { text: "By Indians", scale: 0.5 },
-  { text: "For Indian Investors", scale: 1.5 },
-  { text: "Making Markets Make Sense for India", scale: 4 },
-  { text: "EcoInsight AI", scale: 10 }
+  { text: "For Indian Investors", scale: 1 },
+  { text: "Making Markets Make Sense for India", scale: 1 },
+  { text: "EcoInsight AI", scale: 1 }
 ];
 
 const ScrollRevealSection = () => {
   const outerRef = useRef(null);
   const visualRef = useRef(null);
   const [activeStage, setActiveStage] = useState(0);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,32 +22,38 @@ const ScrollRevealSection = () => {
       
       const totalHeight = rect.height - windowHeight;
       let p = -rect.top / totalHeight;
-      p = Math.max(0, Math.min(1, p));
+      p = Math.max(0, Math.min(1.1, p)); // Allow slight overshoot for exit
       
-      setProgress(p);
-
-      // Map progress (0-1) to stage index (0-3)
-      const stageIndex = Math.min(stages.length - 1, Math.floor(p * stages.length));
+      // Stage Calculation: 0-0.2, 0.2-0.4, 0.4-0.6, 0.6-1.0
+      let stageIndex = 0;
+      if (p > 0.7) stageIndex = 3;
+      else if (p > 0.4) stageIndex = 2;
+      else if (p > 0.15) stageIndex = 1;
+      
       setActiveStage(stageIndex);
 
       if (visualRef.current) {
-        // Continuous 3D Zoom: Start from deep space and pass camera
-        const zPos = -5000 + (p * 5800);
+        // Continuous 3D Zoom: Start from deep space (-5000) and pass camera (+1000)
+        // We use a more linear zoom for the text passage
+        const zPos = -4000 + (p * 4500); 
         
         // Dynamic opacity for text transitions
-        // We want text to fade in, stay briefly, and fade out before the next stage
+        // Fade in/out at the start/end of the WHOLE scroll, 
+        // but keep text visible during transitions for a "passing through" feel
+        const fadeOut = p > 0.9 ? (1 - p) * 10 : 1;
+        const fadeIn = p < 0.05 ? p * 20 : 1;
+        
+        // Individual stage opacity to avoid text overlap or flickering
         const stageProgress = (p * stages.length) % 1;
-        const textOpacity = stageProgress < 0.2 ? stageProgress * 5 : (stageProgress > 0.8 ? (1 - stageProgress) * 5 : 1);
+        const transitionOpacity = stageProgress < 0.1 ? stageProgress * 10 : (stageProgress > 0.9 ? (1 - stageProgress) * 10 : 1);
+
+        visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px)`;
+        visualRef.current.style.opacity = Math.max(0, Math.min(1, fadeIn * fadeOut * transitionOpacity));
         
-        // Final pass-through opacity
-        const finalExitOpacity = p > 0.95 ? (1 - p) * 20 : 1;
-        
-        // Blur for depth effect
-        const blur = p > 0.85 ? (p - 0.85) * 40 : 0;
-        
-        visualRef.current.style.transform = `translateZ(${zPos}px)`;
-        visualRef.current.style.opacity = Math.max(0, Math.min(1, textOpacity * finalExitOpacity));
-        visualRef.current.style.filter = `blur(${blur}px)`;
+        // High Contrast Glow shift
+        const glowScale = 1 + (p * 2);
+        const ring = visualRef.current.querySelector('.brand-glow-ring');
+        if (ring) ring.style.transform = `translate(-50%, -50%) scale(${glowScale})`;
       }
     };
 
@@ -64,11 +69,14 @@ const ScrollRevealSection = () => {
         <div className="atmospheric-fog"></div>
         <div className="reveal-glow"></div>
         
-        <div className="scroll-reveal-visual brand-canvas" ref={visualRef}>
+        <div className="scroll-reveal-visual brand-canvas" ref={visualRef} style={{ zIndex: 10 }}>
           <div className="brand-logo-text staged-narrative">
-            <h2 className="narrative-text">
+            <h2 className={`narrative-text ${activeStage === 1 ? 'motto-main' : ''}`}>
               {stages[activeStage].text}
             </h2>
+            {activeStage === 2 && (
+              <p className="motto-support">Making Markets Make Sense for India</p>
+            )}
           </div>
           <div className="brand-glow-ring"></div>
         </div>

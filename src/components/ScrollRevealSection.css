@@ -15,7 +15,7 @@
   justify-content: center;
   overflow: hidden;
   background: black;
-  perspective: 1000px; /* Reduced for tighter mobile field of view */
+  perspective: 2000px; /* Increased for smoother zoom transition */
   perspective-origin: center center;
 }
 
@@ -29,6 +29,7 @@
   justify-content: center;
   transform-style: preserve-3d;
   will-change: transform, opacity, filter;
+  z-index: 10; /* Ensure text is above fog and glow */
 }
 
 .brand-logo-text.staged-narrative {
@@ -40,40 +41,33 @@
   transform-style: preserve-3d;
   width: 90vw;
   max-width: 1400px;
+  position: relative;
+  z-index: 15;
 }
 
 .narrative-text {
-  font-size: clamp(2rem, 12vw, 8rem); /* Slightly larger on mobile for impact */
+  font-size: clamp(2.5rem, 12vw, 8rem);
   font-weight: 900;
   color: white;
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   text-shadow: 
-    0 0 40px rgba(139, 92, 246, 0.4),
-    0 0 80px rgba(139, 92, 246, 0.2);
+    0 0 30px rgba(139, 92, 246, 0.4),
+    0 0 60px rgba(139, 92, 246, 0.2);
   margin: 0;
-  padding-bottom: 0.1em;
   background: linear-gradient(to bottom, #fff, #d8b4fe);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  width: 95%; /* Prevent edge-touching */
+  width: 95%;
 }
 
-/* Glass Shimmer Effect for Motto */
+.motto-main {
+  position: relative;
+}
+
 .motto-main::after {
-  content: "“By Indians, For Indian Investors.”";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.1);
-  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: shimmer 5s infinite linear;
-  pointer-events: none;
+  display: none; /* Hide the old absolute after, we'll use clean gradients */
 }
 
 .motto-support {
