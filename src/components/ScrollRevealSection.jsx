@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import './ScrollRevealSection.css';
 
 const stages = [
-  { text: "By Indians", scale: 0.5 },
-  { text: "For Indian Investors", scale: 1 },
-  { text: "Making Markets Make Sense for India", scale: 1 },
-  { text: "EcoInsight AI", scale: 1 }
+  { text: "By Indians" },
+  { text: "For Indian Investors" },
+  { text: ["Making Markets", "Make Sense for India"] },
+  { text: "EcoInsight AI" }
 ];
 
 const ScrollRevealSection = () => {
@@ -74,6 +74,8 @@ const ScrollRevealSection = () => {
       // Apply transforms
       visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px) scale(${scale})`;
       visualRef.current.style.opacity = combinedOpacity;
+      // Safety: Hide completely when opacity is effectively 0 to prevent "messed up site" feelings
+      visualRef.current.style.visibility = combinedOpacity < 0.001 ? 'hidden' : 'visible';
       
       const ring = visualRef.current.querySelector('.brand-glow-ring');
       if (ring) {
@@ -83,15 +85,19 @@ const ScrollRevealSection = () => {
       }
     };
 
-    // Use IntersectionObserver to only listen when section is visible
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
       } else {
         window.removeEventListener('scroll', handleScroll);
+        // Reset styles when out of view to prevent site-wide blanking
+        if (visualRef.current) {
+            visualRef.current.style.opacity = 0;
+            visualRef.current.style.visibility = 'hidden';
+        }
       }
-    }, { threshold: 0.01 });
+    }, { threshold: 0.001 }); // Use very small threshold to catch entries early
 
     if (outerRef.current) observer.observe(outerRef.current);
 
@@ -110,9 +116,12 @@ const ScrollRevealSection = () => {
         <div className="scroll-reveal-visual brand-canvas" ref={visualRef} style={{ zIndex: 10 }}>
           <div className="brand-logo-text staged-narrative">
             <h2 className={`narrative-text ${activeStage === 1 ? 'motto-main' : ''}`}>
-              {stages[activeStage].text}
+              {Array.isArray(stages[activeStage].text) 
+                ? stages[activeStage].text.map((line, i) => <div key={i}>{line}</div>)
+                : stages[activeStage].text
+              }
             </h2>
-            {activeStage === 2 && stages[activeStage].text !== "Making Markets Make Sense for India" && (
+            {activeStage === 2 && typeof stages[activeStage].text === 'string' && stages[activeStage].text !== "Making Markets Make Sense for India" && (
               <p className="motto-support">Making Markets Make Sense for India</p>
             )}
           </div>
