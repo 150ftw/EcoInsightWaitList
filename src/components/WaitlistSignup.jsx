@@ -79,8 +79,8 @@ const WaitlistSignup = () => {
               </div>
               
               <div style={{ margin: 'clamp(2rem, 6vw, 3.1rem) 0', padding: 'clamp(1.5rem, 5vw, 2.5rem)', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '24px', border: '1px dashed var(--glass-border)', position: 'relative' }}>
-                <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', marginBottom: '1rem', fontWeight: 800, color: 'white' }}>Unlock Priority Access</p>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Refer 3 colleagues to jump to the <strong>Founders Circle</strong> for instant portal access.</p>
+                <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', marginBottom: '1rem', fontWeight: 800, color: 'white' }}>🚀 Skip the Queue</p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '1.5rem' }}>Successfully refer <strong>3 foundational members</strong> to jump to the front of the line for instant portal access.</p>
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <input 
                     readOnly 

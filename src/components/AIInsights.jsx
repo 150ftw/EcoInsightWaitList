@@ -3,19 +3,19 @@ import './AIInsights.css';
 
 const insights = [
   {
-    title: "Fiscal Policy Simulation",
-    description: "Predict market impacts of RBI rate hikes or budget changes before the news hits the ticker.",
-    tag: "Macro"
+    title: "Real-Time Market Signals",
+    description: "Instant high-conviction signals for NSE & BSE stocks. From Nifty 50 breakouts to Small-cap volatility alerts.",
+    tag: "Equities"
   },
   {
-    title: "Sector Alpha Tech",
-    description: "Identify emerging tech trends in the Indian ecosystem (EV, Green Energy, Fintech) using on-chain sentiment.",
-    tag: "Trend"
+    title: "Full Crypto On-Chain Alpha",
+    description: "Track institutional wallet movements and liquidity rotations across major chains before the retail surge.",
+    tag: "Crypto"
   },
   {
-    title: "On-Chain Capital Flows",
-    description: "Track where the 'Smart Money' is moving in real-time across institutional on-chain wallets.",
-    tag: "Liquidity"
+    title: "Macro Economic Triggers",
+    description: "Direct impact analysis of RBI policy shifts, fiscal budget maneuvers, and global interest rate trends.",
+    tag: "Economy"
   }
 ];
 

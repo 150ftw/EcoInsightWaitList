@@ -1,0 +1,124 @@
+.teaser-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.teaser-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.teaser-mockup {
+  position: relative;
+  height: 600px;
+  background: #0d0d11;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+}
+
+.mockup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: radial-gradient(circle at center, rgba(13, 13, 17, 0.4) 0%, rgba(13, 13, 17, 0.9) 100%);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.coming-soon-badge {
+  padding: 0.5rem 1.5rem;
+  background: var(--accent-primary);
+  color: white;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.mockup-overlay h3 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.mockup-overlay p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+/* Blurred UI Elements */
+.blurred-ui {
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  opacity: 0.3;
+}
+
+.ui-header {
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.ui-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+}
+
+.ui-sidebar {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+}
+
+.ui-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ui-chart-area {
+  flex: 2;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(0, 0, 0, 0));
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ui-insight-strip {
+  height: 80px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 15px;
+}
+
+.ui-feed {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .teaser-mockup {
+    height: 500px;
+  }
+  .mockup-overlay h3 {
+    font-size: 2rem;
+  }
+}

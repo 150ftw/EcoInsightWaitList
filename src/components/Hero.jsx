@@ -61,9 +61,12 @@ const Hero = () => {
             >
               Get Early Access
             </button>
-            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>
-              Join 1,500+ investors waiting for the Alpha Launch
-            </p>
+            <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div className="pulse-indicator"></div>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', fontWeight: 600, margin: 0 }}>
+                Join <span style={{ color: 'var(--accent-primary)' }}>1,582+</span> institutional investors already in queue
+              </p>
+            </div>
           </div>
         </div>
       </div>

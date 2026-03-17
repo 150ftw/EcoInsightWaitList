@@ -8,6 +8,7 @@ import InteractiveDemo from './components/InteractiveDemo'
 import AIInsights from './components/AIInsights'
 import TrustSection from './components/TrustSection'
 import VisionSection from './components/VisionSection'
+import TeaserSection from './components/TeaserSection'
 import HypeSection from './components/HypeSection'
 import WaitlistSignup from './components/WaitlistSignup'
 import FounderSection from './components/FounderSection'
@@ -30,6 +31,7 @@ const LandingPage = () => {
       <AIInsights />
       <TrustSection />
       <VisionSection />
+      <TeaserSection />
       <HypeSection />
       <WaitlistSignup />
       <FounderSection />

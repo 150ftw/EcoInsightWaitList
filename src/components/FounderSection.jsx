@@ -47,14 +47,13 @@ const FounderSection = () => {
             <p style={{ 
               color: 'rgba(255, 255, 255, 0.7)', 
               lineHeight: 1.7, 
-              fontSize: 'clamp(0.95rem, 3vw, 1.05rem)', 
+              fontSize: 'clamp(1rem, 3vw, 1.1rem)', 
               marginBottom: '1.5rem', 
-              fontStyle: 'italic', 
-              borderLeft: 'none', 
+              fontWeight: 500,
               paddingLeft: '0',
               textAlign: 'center'
             }}>
-              "I built EcoInsight because I believe Dalal Street belongs to everyone, not just the elite. Seeing you here today isn't just about a waitlist—it's about a shared dream. Every design choice, every line of code, it all comes from wanting to see you win. I promise to fight for your success like it's my own. Welcome to the elite."
+              "Institutional alpha shouldn't be a privilege of the 1%. I built EcoInsight to give every Bharat investor the same edge as a hedge fund. We're not just building a tool; we're building a shared future where precision beats noise. Welcome to the elite."
             </p>
             <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
               <a
