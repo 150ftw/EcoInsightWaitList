@@ -5,13 +5,16 @@ const TrustSection = () => {
   return (
     <section className="trust-section">
       <div className="container">
+        <div className="section-header animate-fade-in">
+          <h2 className="gradient-text">Institutional Grade Security</h2>
+          <p className="section-subtitle">
+            EcoInsight isn't just a bot. It's a financial engine built on the foundations 
+            of security and precision.
+          </p>
+        </div>
+
         <div className="trust-grid">
           <div className="trust-content animate-fade-in">
-            <h2 className="gradient-text">Institutional Grade Security</h2>
-            <p className="trust-description">
-              EcoInsight isn't just a bot. It's a financial engine built on the foundations 
-              of security and precision.
-            </p>
             
             <div className="trust-details">
               <div className="trust-item">

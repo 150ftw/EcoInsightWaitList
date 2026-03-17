@@ -15,16 +15,6 @@
   text-align: left;
 }
 
-.problem-description {
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 1.5rem 0 3rem;
-}
-
-.problem-description strong {
-  color: var(--text-primary);
-}
 
 .noise-points {
   display: flex;

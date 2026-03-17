@@ -14,12 +14,6 @@
   text-align: left;
 }
 
-.trust-description {
-  color: var(--text-secondary);
-  font-size: 1.25rem;
-  margin: 1.5rem 0 3rem;
-  line-height: 1.6;
-}
 
 .trust-details {
   display: flex;

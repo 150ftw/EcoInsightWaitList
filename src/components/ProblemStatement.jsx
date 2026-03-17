@@ -5,13 +5,16 @@ const ProblemStatement = () => {
   return (
     <section className="problem-statement">
       <div className="container">
+        <div className="section-header animate-fade-in">
+          <h2 className="gradient-text">The Problem: Alpha is Drowning in Noise</h2>
+          <p className="section-subtitle">
+            Today's investor isn't suffering from a lack of information. They are suffering 
+            from an <strong>excess of it</strong>.
+          </p>
+        </div>
+
         <div className="problem-grid">
           <div className="problem-text animate-fade-in">
-            <h2 className="gradient-text">The Problem: Alpha is Drowning in Noise</h2>
-            <p className="problem-description">
-              Today's investor isn't suffering from a lack of information. They are suffering 
-              from an <strong>excess of it</strong>.
-            </p>
             <div className="noise-points">
               <div className="noise-item">
                 <span className="noise-icon">✕</span>
