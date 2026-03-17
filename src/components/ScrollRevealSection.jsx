@@ -34,10 +34,6 @@ const ScrollRevealSection = () => {
         setActiveStage(currentStage);
       }
 
-      // Cinematic Zoom Logic
-      // Start closer for impact (-1500) and pass through camera (+2000)
-      const zPos = -1500 + (p * 3500); 
-      
       // Global Smooth Opacity
       let finalOpacity = 1;
       if (p < 0.01) finalOpacity = p * 100;
@@ -49,14 +45,17 @@ const ScrollRevealSection = () => {
       if (stageProgress < 0.05) stageFade = stageProgress * 20;
       if (stageProgress > 0.95) stageFade = (1 - stageProgress) * 20;
 
-      visualRef.current.style.transform = `translate3d(0, 0, ${zPos}px)`;
-      visualRef.current.style.opacity = Math.max(0, Math.min(1, finalOpacity * stageFade));
+      const combinedOpacity = Math.max(0, Math.min(1, finalOpacity * stageFade));
+      
+      // Removed 3D Zoom (zPos) per user request for readability
+      visualRef.current.style.transform = `translate3d(0, 0, 0)`;
+      visualRef.current.style.opacity = combinedOpacity;
       
       const ring = visualRef.current.querySelector('.brand-glow-ring');
       if (ring) {
         const ringScale = 0.5 + (p * 4);
         ring.style.transform = `translate(-50%, -50%) scale(${ringScale})`;
-        ring.style.opacity = (finalOpacity * stageFade) * 0.3;
+        ring.style.opacity = combinedOpacity * 0.3;
       }
     };
 
