@@ -22,7 +22,6 @@ const Navbar = () => {
     <nav className="navbar animate-fade-in" style={{ 
       padding: '1.5rem 0', 
       position: 'fixed', 
-      top: '40px', 
       width: '100%', 
       zIndex: 9999,
       background: 'rgba(0,0,0,0.5)',

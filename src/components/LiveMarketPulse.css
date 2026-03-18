@@ -120,6 +120,10 @@
 }
 
 @media (max-width: 768px) {
+  .market-pulse-bar {
+    display: none;
+  }
+  
   .market-pulse-container {
     padding: 0 1rem;
     gap: 1rem;

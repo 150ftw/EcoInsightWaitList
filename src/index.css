@@ -232,3 +232,15 @@ section {
   line-height: 1.6;
   opacity: 0.9;
 }
+
+/* --- Navigation Responsive Positioning --- */
+.navbar {
+  top: 40px;
+  transition: top 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    top: 0 !important;
+  }
+}
