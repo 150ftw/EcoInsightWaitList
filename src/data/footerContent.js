@@ -62,7 +62,7 @@ export const footerContent = {
         <li>Senior Backend Engineer (Supabase/Scalability)</li>
         <li>FinTech Product Designer</li>
       </ul>
-      <p>Send your portfolio to <a href="mailto:careers@joinecoinsight.dev">careers@joinecoinsight.dev</a></p>
+      <p>Send your portfolio to <a href="mailto:support@ecoinsight.online">support@ecoinsight.online</a></p>
     `
   },
   'partners': {
@@ -89,7 +89,7 @@ export const footerContent = {
       <h2>Get in Touch</h2>
       <p>Have questions or feedback? We’re always ready to hear from our community.</p>
       <h3>Support Email</h3>
-      <p><a href="mailto:support@joinecoinsight.dev">support@joinecoinsight.dev</a></p>
+      <p><a href="mailto:support@ecoinsight.online">support@ecoinsight.online</a></p>
       <h3>Contact Number</h3>
       <p><a href="tel:+919667510634">+91 9667510634</a> (Standard rates may apply)</p>
       <h3>Headquarters</h3>
@@ -140,7 +140,7 @@ export const footerContent = {
       <h2>Safety First</h2>
       <p>We take all reports of misuse or insecurity seriously. If you encounter any issues, please report them directly to our security team.</p>
       <h3>Reporting Form</h3>
-      <p>Email: <a href="mailto:abuse@joinecoinsight.dev">abuse@joinecoinsight.dev</a></p>
+      <p>Email: <a href="mailto:support@ecoinsight.online">support@ecoinsight.online</a></p>
     `
   }
 };
