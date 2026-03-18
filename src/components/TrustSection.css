@@ -14,7 +14,6 @@
   text-align: left;
 }
 
-
 .trust-details {
   display: flex;
   flex-direction: column;
@@ -40,7 +39,8 @@
 
 .status-card {
   padding: 2.5rem;
-  min-width: 320px;
+  width: 100%;
+  max-width: 400px;
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -96,6 +96,13 @@
 @media (max-width: 968px) {
   .trust-grid {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 2.5rem;
   }
 }
+
+@media (max-width: 768px) {
+  .status-card {
+    padding: 1.5rem;
+  }
+}
+

@@ -34,27 +34,27 @@ const VisionSection = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
-      
+
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       // Start progress when top of container is mid-screen
       // End progress when bottom of container is mid-screen
       const startTrigger = windowHeight * 0.7;
       const endTrigger = windowHeight * 0.3;
-      
+
       const totalDistance = rect.height;
       const currentPos = startTrigger - rect.top;
-      
+
       let progress = currentPos / totalDistance;
       progress = Math.max(0, Math.min(1, progress));
-      
+
       containerRef.current.style.setProperty('--scroll-progress', progress);
     };
 
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial check
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

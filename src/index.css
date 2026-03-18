@@ -195,13 +195,17 @@ section {
 
 /* --- Mobile Specific Utilities --- */
 @media (max-width: 768px) {
-  .container { text-align: center; }
+  .container { 
+    padding: 0 1.25rem; /* Tighter padding for mobile */
+    text-align: center; 
+  }
   br { display: none; } /* Better text wrapping on mobile */
   
   .glass-card {
-    padding: 2rem !important;
+    padding: 1.5rem !important; /* Slightly tighter than 2rem */
   }
 }
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }

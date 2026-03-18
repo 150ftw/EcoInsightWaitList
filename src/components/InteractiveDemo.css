@@ -184,7 +184,7 @@
 
   .window-content {
     padding: 1.25rem; /* Reduced from 2.5rem */
-    min-height: 480px;
+    min-height: 380px; /* Reduced from 480px */
   }
   
   .query-line {
@@ -216,3 +216,4 @@
     font-size: 0.85rem;
   }
 }
+

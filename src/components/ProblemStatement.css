@@ -15,7 +15,6 @@
   text-align: left;
 }
 
-
 .noise-points {
   display: flex;
   flex-direction: column;
@@ -110,6 +109,21 @@
 @media (max-width: 1024px) {
   .problem-grid {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 3rem;
   }
 }
+
+@media (max-width: 768px) {
+  .solution-card {
+    padding: 2rem;
+  }
+  
+  .noise-points {
+    gap: 1.5rem;
+  }
+  
+  .problem-statement {
+    padding: 60px 0;
+  }
+}
+
