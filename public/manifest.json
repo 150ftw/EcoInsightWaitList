@@ -3,7 +3,17 @@
   "name": "EcoInsight – AI Financial Insights",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/logo.svg",
       "type": "image/svg+xml",
       "sizes": "any"
     }
