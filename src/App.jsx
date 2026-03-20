@@ -13,6 +13,7 @@ import TeaserSection from './components/TeaserSection'
 import HypeSection from './components/HypeSection'
 import WaitlistSignup from './components/WaitlistSignup'
 import FounderSection from './components/FounderSection'
+import NewsSection from './components/NewsSection'
 import Footer from './components/Footer'
 import InfoPage from './components/InfoPage'
 import DarkVeil from './components/Backgrounds/DarkVeil/DarkVeil'
@@ -37,6 +38,7 @@ const LandingPage = () => {
       <TeaserSection />
       <HypeSection />
       <WaitlistSignup />
+      <NewsSection />
       <FounderSection />
     </>
   );
