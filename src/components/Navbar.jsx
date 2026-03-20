@@ -36,12 +36,12 @@ const Navbar = () => {
         padding: '0 1rem' /* Tighter mobile padding */
       }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
-          <img src={logo} alt="EcoInsight" style={{ width: 'clamp(28px, 6vw, 40px)', height: 'clamp(28px, 6vw, 40px)' }} />
-          <span className="accent-gradient-text" style={{ fontSize: 'clamp(1.1rem, 4vw, 1.5rem)', fontWeight: 800, letterSpacing: '-0.03em' }}>EcoInsight</span>
+          <img src={logo} alt="EcoInsight" style={{ width: 'clamp(32px, 7vw, 44px)', height: 'clamp(32px, 7vw, 44px)' }} />
+          <span className="accent-gradient-text" style={{ fontSize: 'clamp(1.2rem, 4.5vw, 1.6rem)', fontWeight: 800, letterSpacing: '-0.03em' }}>EcoInsight</span>
         </Link>
         <button 
           className="btn-primary" 
-          style={{ padding: '0.6rem 1rem', fontSize: '0.85rem', minWidth: 'auto' }}
+          style={{ padding: '0.6rem 1.25rem', fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)', minWidth: 'auto' }}
           onClick={handleJoinClick}
         >
           Join Now
