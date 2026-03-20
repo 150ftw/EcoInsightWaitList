@@ -1,19 +1,22 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { newsData } from '../data/newsData';
-import './NewsSection.css';
+import './NewsPage.css';
 
-const NewsSection = () => {
+const NewsPage = () => {
   return (
-    <section className="news-section">
+    <div className="news-page">
       <div className="container">
-        <div className="news-header">
-          <h2 className="news-title">
-            News of the Hour <span>›</span>
-          </h2>
+        <div className="news-page-header">
+          <h1 className="news-page-title">
+            Bharat <span className="accent-gradient-text">Market Intelligence</span>
+          </h1>
+          <p className="news-page-subtitle">
+            Real-time insights from across the Indian financial ecosystem. Stock markets, Crypto, and Policy updates.
+          </p>
         </div>
 
-        <div className="news-grid">
-          {newsData.slice(0, 6).map((news) => (
+        <div className="news-grid full-grid">
+          {newsData.map((news) => (
             <a 
               key={news.id} 
               href={news.url} 
@@ -31,16 +34,15 @@ const NewsSection = () => {
               </div>
               <h3 className="news-card-title">{news.title}</h3>
               <p className="news-card-description">{news.description}</p>
+              <div className="view-source">
+                Source: {news.source} <span>↗</span>
+              </div>
             </a>
           ))}
         </div>
-
-        <Link to="/news" className="keep-reading">
-          Keep reading <span>›</span>
-        </Link>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default NewsSection;
+export default NewsPage;

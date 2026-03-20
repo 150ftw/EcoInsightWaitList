@@ -14,6 +14,7 @@ import HypeSection from './components/HypeSection'
 import WaitlistSignup from './components/WaitlistSignup'
 import FounderSection from './components/FounderSection'
 import NewsSection from './components/NewsSection'
+import NewsPage from './components/NewsPage'
 import Footer from './components/Footer'
 import InfoPage from './components/InfoPage'
 import DarkVeil from './components/Backgrounds/DarkVeil/DarkVeil'
@@ -69,6 +70,7 @@ function AppContent() {
       <main style={{ flex: 1, position: 'relative', zIndex: 5 }}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/news" element={<NewsPage />} />
           <Route path="/info/:slug" element={<InfoPage />} />
         </Routes>
       </main>
