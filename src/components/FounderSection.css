@@ -1,0 +1,49 @@
+.founder-section {
+  padding: clamp(2rem, 5vw, 40px) 0;
+}
+
+.founder-card-inner {
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 3rem);
+  max-width: 850px;
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.founder-links {
+  display: flex;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .founder-card-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  
+  .founder-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .founder-links a {
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+}

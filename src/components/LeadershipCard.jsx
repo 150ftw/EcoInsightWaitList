@@ -1,5 +1,5 @@
 import React from 'react';
-import founderImg from '../assets/founder/shivam.jpg';
+import founderImg from '../assets/founder/shivam_new.jpg';
 import './LeadershipCard.css';
 
 const LeadershipCard = () => {

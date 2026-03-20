@@ -1,26 +1,12 @@
 import React from 'react';
 import founderImg from '../assets/founder/shivam_new.jpg';
+import './FounderSection.css';
 
 const FounderSection = () => {
   return (
-    <section id="founder-section" style={{ padding: 'clamp(2rem, 5vw, 40px) 0' }}>
+    <section id="founder-section" className="founder-section">
       <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-        <div style={{
-          padding: 'clamp(1.5rem, 5vw, 3.5rem)',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 'clamp(1.5rem, 5vw, 3rem)',
-          maxWidth: '850px',
-          width: 'calc(100% - 2rem)',
-          margin: '0 1rem',
-          backgroundColor: 'rgba(255, 255, 255, 0.02)',
-          borderRadius: '24px',
-          border: '1px solid rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(20px)',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }} className="founder-card-inner">
+        <div className="founder-card-inner">
           <div style={{ flexShrink: 0 }}>
             <img
               src={founderImg}
@@ -59,14 +45,7 @@ const FounderSection = () => {
             }}>
               "India’s markets are unlike any other — dynamic, complex, and full of untapped opportunity. Yet the tools to understand them have never truly been built for us. EcoInsight changes that. Built by Indians, for Indians — delivering clarity, precision, and real financial intelligence. This is not just access. This is empowerment. Welcome to the future of Bharat’s investing."
             </p>
-            <div style={{ 
-              display: 'flex', 
-              gap: 'clamp(1rem, 3vw, 1.5rem)', 
-              flexWrap: 'wrap', 
-              justifyContent: 'center',
-              flexDirection: window.innerWidth < 640 ? 'column' : 'row', /* Fallback but ideally handled via className or responsive style */
-              alignItems: 'center'
-            }} className="founder-links">
+            <div className="founder-links">
               <a
                 href="https://www.instagram.com/ecoinsight.ai"
                 target="_blank"
