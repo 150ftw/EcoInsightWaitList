@@ -58,6 +58,20 @@
   }
 }
 
+@media (max-width: 768px) {
+  .news-page {
+    padding: 120px 0 60px;
+  }
+  
+  .news-page-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .news-grid.full-grid {
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 640px) {
   .news-grid.full-grid {
     grid-template-columns: 1fr;

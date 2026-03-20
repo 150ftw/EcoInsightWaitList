@@ -111,6 +111,25 @@
   opacity: 0.8;
 }
 
+@media (max-width: 768px) {
+  .news-section {
+    padding: clamp(3rem, 10vh, 5rem) 0;
+  }
+  
+  .news-grid {
+    gap: 1.25rem;
+  }
+
+  .keep-reading {
+    width: 100%;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+  }
+}
+
 @media (max-width: 1024px) {
   .news-grid {
     grid-template-columns: repeat(2, 1fr);
