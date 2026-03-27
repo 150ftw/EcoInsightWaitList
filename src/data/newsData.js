@@ -1,4 +1,4 @@
-export const newsData = [
+export const fallbackNewsData = [
   {
     id: 1,
     category: 'Stocks',

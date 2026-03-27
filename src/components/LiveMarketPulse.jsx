@@ -1,51 +1,47 @@
 import React from 'react';
+import { useMarketData } from '../hooks/useMarketData';
 import './LiveMarketPulse.css';
 
 const LiveMarketPulse = () => {
-  const marketData = [
-    { label: 'Nifty', value: '+0.82%', trend: 'up' },
-    { label: 'Bitcoin', value: '-1.2%', trend: 'down' },
-    { label: 'Rupee Trend', value: 'Stable', trend: 'neutral' }
-  ];
+  const { marketData, loading } = useMarketData();
+
+  if (loading) {
+    return (
+      <div className="market-pulse-bar skeleton-pulse-bar">
+        <div className="pulse-skeleton-line"></div>
+      </div>
+    );
+  }
+
+  // Duplicate items fully for seamless scrolling marquee
+  const displayItems = [...marketData, ...marketData, ...marketData];
 
   return (
-    <div className="market-pulse-bar">
-      <div className="market-pulse-container">
-        <div className="live-badge">
-          <span className="pulse-dot"></span>
-          LIVE MARKET PULSE <span className="preview-tag">(Preview Feature)</span>
-        </div>
+    <div className="market-pulse-bar premium-glass">
+      <div className="pulse-gradient-overlay left"></div>
+      
+      <div className="live-badge premium-badge">
+        <span className="pulse-dot"></span>
+        LIVE <span className="hide-on-mobile">MARKET</span> PULSE
+      </div>
         
-        <div className="ticker-wrapper">
-          <div className="ticker-content">
-            {marketData.map((item, index) => (
-              <div key={index} className="ticker-item">
-                <span className="ticker-label">{item.label}:</span>
-                <span className={`ticker-value ${item.trend}`}>
-                  {item.trend === 'up' && '↑ '}
-                  {item.trend === 'down' && '↓ '}
-                  {item.value}
+      <div className="ticker-wrapper">
+        <div className="ticker-content premium-scroll">
+          {displayItems.map((item, index) => (
+            <div key={`${item.id}-${index}`} className="ticker-item">
+              <span className="ticker-label">{item.label}</span>
+              <span className={`ticker-value ${item.trend} glow-text`}>
+                {item.value}
+                <span className="ticker-change">
+                  {item.trend === 'up' ? '▲' : item.trend === 'down' ? '▼' : '♦'} {item.changePercent}
                 </span>
-              </div>
-            ))}
-            {/* Duplicating for seamless loop if needed, though three items might just fit */}
-            {marketData.map((item, index) => (
-              <div key={`dup-${index}`} className="ticker-item hide-on-desktop">
-                <span className="ticker-label">{item.label}:</span>
-                <span className={`ticker-value ${item.trend}`}>
-                  {item.trend === 'up' && '↑ '}
-                  {item.trend === 'down' && '↓ '}
-                  {item.value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="market-cta">
-          🎯 Real-time insights coming soon
+              </span>
+            </div>
+          ))}
         </div>
       </div>
+
+      <div className="pulse-gradient-overlay right"></div>
     </div>
   );
 };
