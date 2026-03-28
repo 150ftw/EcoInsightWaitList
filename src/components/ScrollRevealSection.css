@@ -95,7 +95,26 @@
 }
 
 @media (max-width: 768px) {
+  .scroll-reveal-outer {
+    height: 250vh; /* Slightly shorter on mobile for snappier feel */
+  }
+
   .scroll-reveal-visual {
     width: 95%;
+  }
+
+  .brand-logo-text.staged-narrative {
+    min-height: 200px;
+    width: 95vw;
+  }
+
+  .narrative-text {
+    font-size: clamp(2rem, 10vw, 4rem);
+    padding: 0.1em 0;
+    width: 100%;
+  }
+
+  .motto-support {
+    font-size: clamp(1rem, 3vw, 1.5rem);
   }
 }

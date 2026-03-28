@@ -27,7 +27,7 @@ html, body {
   padding: 0;
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden !important; /* Critical: hide overflow */
+  overflow-x: clip !important; /* Critical: clip (not hidden) preserves position: sticky */
   position: relative;
 }
 
@@ -43,7 +43,7 @@ body {
     background-color: transparent !important;
     width: 100%;
     max-width: 100vw;
-    overflow-x: hidden !important;
+    overflow-x: clip !important; /* clip preserves position: sticky */
     position: relative;
 }
 
