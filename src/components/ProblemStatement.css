@@ -114,12 +114,31 @@
 }
 
 @media (max-width: 768px) {
-  .solution-card {
-    padding: 2rem;
+  .problem-text {
+    text-align: center;
   }
   
+  .noise-item {
+    text-align: left; /* Keep noise items left-aligned for better reading */
+    margin: 0 auto;
+    max-width: 500px;
+  }
+
+  .solution-card {
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  
+  .solution-card h3 {
+    font-size: 1.75rem;
+  }
+
+  .solution-card p {
+    font-size: 1rem;
+  }
+
   .noise-points {
-    gap: 1.5rem;
+    gap: 2rem;
   }
   
   .problem-statement {

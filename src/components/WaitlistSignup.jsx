@@ -14,10 +14,10 @@ const WaitlistSignup = () => {
 
   if (!isLoaded) {
     return (
-      <section id="waitlist-section" style={{ padding: '140px 0', position: 'relative' }}>
+      <section id="waitlist-section" style={{ padding: 'clamp(60px, 12vh, 140px) 0', position: 'relative' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
-          <div className="glass-card" style={{ padding: '4rem', textAlign: 'center' }}>
-            <div className="accent-gradient-text" style={{ fontSize: '1.5rem', fontWeight: 700 }}>Initializing Bharat's Future...</div>
+          <div className="glass-card" style={{ padding: 'clamp(2rem, 8vw, 4rem)', textAlign: 'center' }}>
+            <div className="accent-gradient-text" style={{ fontSize: 'clamp(1.1rem, 4vw, 1.5rem)', fontWeight: 700 }}>Initializing Bharat's Future...</div>
           </div>
         </div>
       </section>
@@ -35,12 +35,12 @@ const WaitlistSignup = () => {
               <p style={{ color: 'rgba(255, 255, 255, 0.6)', marginBottom: 'clamp(2rem, 6vw, 3.5rem)', fontSize: 'clamp(1rem, 3vw, 1.25rem)', maxWidth: '500px', margin: '0 auto clamp(2.5rem, 6vw, 3.5rem)', lineHeight: 1.6 }}>
                 EcoInsight enrollment is strictly restricted to verified foundational slots. Access is currently <strong>request-only</strong>.
               </p>
-              <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center' }}>
                 <SignInButton mode="modal">
-                  <button className="btn-primary" style={{ minWidth: '180px' }}>Sign In</button>
+                  <button className="btn-primary" style={{ minWidth: 'min(300px, 100%)', width: '100%' }}>Sign In</button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <button className="btn-secondary" style={{ minWidth: '180px' }}>Create Account</button>
+                  <button className="btn-secondary" style={{ minWidth: 'min(300px, 100%)', width: '100%' }}>Create Account</button>
                 </SignUpButton>
               </div>
             </>
@@ -81,15 +81,15 @@ const WaitlistSignup = () => {
               <div className="referral-link-container" style={{ margin: 'clamp(2rem, 6vw, 3.1rem) 0', padding: 'clamp(1.5rem, 5vw, 2.5rem)', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '24px', border: '1px dashed var(--glass-border)', position: 'relative' }}>
                 <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', marginBottom: '1rem', fontWeight: 800, color: 'white' }}>🚀 Skip the Queue</p>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '1.5rem' }}>Successfully refer <strong>3 foundational members</strong> to jump to the front of the line for instant portal access.</p>
-                <div className="referral-input-group" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <div className="referral-input-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'stretch' }}>
                   <input 
                     readOnly 
                     value={getReferralLink()} 
                     className="input-field" 
-                    style={{ flex: 1, minWidth: 'min(300px, 100%)', fontSize: '0.85rem', background: 'rgba(0,0,0,0.2)' }} 
+                    style={{ flex: 1, width: '100%', fontSize: '0.85rem', background: 'rgba(0,0,0,0.2)', textAlign: 'center' }} 
                   />
-                  <button onClick={copyLink} className="btn-primary" style={{ flex: '1 0 auto', padding: '0.75rem 1.5rem', fontSize: '0.9rem', width: 'auto' }}>
-                    {copySuccess ? 'Copied!' : 'Copy Link'}
+                  <button onClick={copyLink} className="btn-primary" style={{ width: '100%', padding: '1rem 1.5rem', fontSize: '1rem' }}>
+                    {copySuccess ? 'Copied Link! ✅' : 'Copy Referral Link'}
                   </button>
                 </div>
               </div>

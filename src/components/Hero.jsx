@@ -37,8 +37,13 @@ const Hero = () => {
           }}>
             ✨ Revolutionizing Indian Wealth Creation
           </span>
-          <h1 style={{ lineHeight: 0.95, marginBottom: 'clamp(1.5rem, 4vw, 2.5rem)', animation: 'float 6s ease-in-out infinite' }}>
-            AI That Decodes <br />
+          <h1 style={{ 
+            lineHeight: 1.1, 
+            marginBottom: 'clamp(1.5rem, 4vw, 2.5rem)', 
+            animation: 'float 6s ease-in-out infinite',
+            fontSize: 'clamp(2.2rem, 10vw, 5.5rem)'
+          }}>
+            AI That Decodes <br className="hide-on-mobile" />
             <span className="accent-gradient-text" style={{ paddingBottom: '0.2em' }}>NSE & BSE Markets</span>
           </h1>
           <p style={{ 
