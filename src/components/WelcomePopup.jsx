@@ -6,8 +6,8 @@ const WelcomePopup = () => {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    // Small delay so the page loads before popup appears
-    const timer = setTimeout(() => setVisible(true), 800);
+    // Show popup after 10 seconds
+    const timer = setTimeout(() => setVisible(true), 10000);
     return () => clearTimeout(timer);
   }, []);
 
