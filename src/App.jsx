@@ -20,6 +20,7 @@ import InfoPage from './components/InfoPage'
 import DarkVeil from './components/Backgrounds/DarkVeil/DarkVeil'
 import LiveMarketPulse from './components/LiveMarketPulse'
 import WhatsAppButton from './components/WhatsAppButton'
+import WelcomePopup from './components/WelcomePopup'
 
 const LandingPage = () => {
   useEffect(() => {
@@ -64,6 +65,7 @@ function AppContent() {
 
   return (
     <div className="app-landing" style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <WelcomePopup />
       <LiveMarketPulse />
       <Navbar />
       

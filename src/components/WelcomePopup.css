@@ -1,0 +1,258 @@
+/* ===== Welcome Popup Overlay ===== */
+.welcome-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: overlayFadeIn 0.4s ease forwards;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== Popup Card ===== */
+.welcome-popup-card {
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  background: rgba(12, 12, 20, 0.92);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 28px;
+  padding: clamp(2rem, 6vw, 3.5rem);
+  text-align: center;
+  box-shadow:
+    0 0 60px rgba(139, 92, 246, 0.15),
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: popupSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+.welcome-popup-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), transparent 50%, rgba(217, 70, 239, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== Close Button ===== */
+.welcome-popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.welcome-popup-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* ===== Content ===== */
+.welcome-popup-icon {
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
+  animation: popupFloat 3s ease-in-out infinite;
+}
+
+@keyframes popupFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.welcome-popup-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-primary);
+  margin-bottom: 1.5rem;
+}
+
+.welcome-popup-card h2 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  background: linear-gradient(to bottom, #ffffff, #d8b4fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-popup-desc {
+  color: var(--text-secondary);
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.85;
+}
+
+/* ===== CTA Button ===== */
+.welcome-popup-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: white;
+  border: none;
+  padding: clamp(0.9rem, 3vw, 1.15rem) clamp(1.75rem, 6vw, 2.75rem);
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  font-family: var(--font-main);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 25px rgba(139, 92, 246, 0.4);
+  letter-spacing: -0.01em;
+  width: 100%;
+  justify-content: center;
+}
+
+.welcome-popup-cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.6);
+  filter: brightness(1.15);
+}
+
+.welcome-popup-cta-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.welcome-popup-cta:hover .welcome-popup-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ===== Skip Link ===== */
+.welcome-popup-skip {
+  display: block;
+  margin-top: 1.25rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  transition: color 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.welcome-popup-skip:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ===== Decorative Glow ===== */
+.welcome-popup-glow {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Exiting Animation ===== */
+.welcome-popup-overlay.exiting {
+  animation: overlayFadeOut 0.35s ease forwards;
+}
+
+.welcome-popup-overlay.exiting .welcome-popup-card {
+  animation: popupSlideOut 0.35s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes popupSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+}
+
+/* ===== Mobile Tweaks ===== */
+@media (max-width: 768px) {
+  .welcome-popup-overlay {
+    padding: 1rem;
+    align-items: center;
+  }
+
+  .welcome-popup-card {
+    border-radius: 22px;
+    padding: 2rem 1.5rem;
+  }
+
+  .welcome-popup-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
