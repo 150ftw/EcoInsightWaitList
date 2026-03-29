@@ -109,28 +109,19 @@
   transform: rotate(90deg) scale(1.1);
 }
 
-/* ===== Hero Image ===== */
-.welcome-popup-hero {
-  position: relative;
-  width: 100%;
-  height: 220px;
+/* ===== Content ===== */
+.welcome-popup-icon {
+  font-size: clamp(3.5rem, 10vw, 4.5rem);
   margin-bottom: 2rem;
+  filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.6));
+  animation: popupFloat 3s ease-in-out infinite;
   z-index: 2;
-  perspective: 1000px;
+  position: relative;
 }
 
-.hero-launch-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.4));
-  animation: heroFloat 4s ease-in-out infinite;
-  transform: rotateZ(-5deg);
-}
-
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0) rotateZ(-5deg) scale(1); }
-  50% { transform: translateY(-15px) rotateZ(-2deg) scale(1.05); }
+@keyframes popupFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 /* ===== Social Proof Banner ===== */

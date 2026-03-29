@@ -37,25 +37,19 @@ const WelcomePopup = () => {
           ✕
         </button>
 
-        <div className="welcome-popup-hero">
-          <img 
-            src="/assets/futuristic_ai_rocket_3d.png" 
-            alt="EcoInsight AI Rocket" 
-            className="hero-launch-image"
-          />
-        </div>
+        <div className="welcome-popup-icon">🚀</div>
 
         <div className="social-proof-banner">
           <span className="live-pulse-dot" />
           Joining 5,420+ Early Investors
         </div>
 
-        <div className="welcome-popup-badge">Economic Intelligence 2.0</div>
+        <div className="welcome-popup-badge">Economic Intelligence</div>
 
         <h2>EcoInsightAI Is Almost Live!</h2>
 
         <p className="welcome-popup-desc">
-          The future of Indian investing is nearly here. Get ready for 
+          The future of Indian investing is nearly here. Get ready for
           institutional-grade AI intelligence at your fingertips.
         </p>
 
