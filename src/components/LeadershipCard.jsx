@@ -13,7 +13,7 @@ const teamMembers = [
   },
   {
     name: 'Ansh Tripathi',
-    role: 'THE SOCIAL MEDIA GUY',
+    role: <> <span style={{ fontWeight: '800' }}>THE</span> SOCIAL MEDIA GUY </>,
     image: anshImg,
     badge: 'ECOINSIGHT AI (OPC) PRIVATE LIMITED',
     icon: '💻'
@@ -36,7 +36,7 @@ const LeadershipCard = () => {
               <div className="founder-avatar-wrapper">
                 <img src={member.image} alt={member.name} className="founder-avatar" />
               </div>
-              
+
               <h3 className="founder-name">{member.name}</h3>
               <p className="founder-role">{member.role}</p>
 
